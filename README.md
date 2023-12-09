@@ -1,12 +1,12 @@
 # Enunciado de la Práctica Spring Batch
 
-**Objetivo:**
+### Objetivo:
 
 El objetivo de esta práctica es desarrollar una aplicación de procesamiento por batchs, utilizando la programación concurrente para optimizar el rendimiento y minimizar el tiempo de procesamiento.
 
 El programa deberá leer un gran volumen de datos, procesar estos datos de manera eficiente utilizando programación concurrente y, finalmente, almacenar los datos procesados. El contexto de los datos será definido a continuación.
 
-**Contexto:**
+### Contexto:
 
 Imaginemos que somos parte de una gran organización que maneja una enorme cantidad de datos de transacciones bancarias. Estos datos son almacenados en archivos planos y se necesita un programa que pueda procesar estos datos por la noche, cuando la base de datos no está bloqueada por otras tareas.
 
@@ -18,11 +18,12 @@ El programa deberá estar construido de tal manera que pueda dividirse en peque�
 
 **El programa deberá implementar las siguientes funciones:**
 
-Leer los datos del archivo de transacciones bancarias.
-Procesar los datos utilizando programación concurrente. Esta etapa deberá incluir la validación de datos y el procesamiento y cálculos sobre los datos.
-Almacenar los datos procesados en la base de datos.
-Implementar un programador que encadene las tareas y administre las operaciones de flujo.
-Recursos:
+- Leer los datos del archivo de transacciones bancarias.
+- Procesar los datos utilizando programación concurrente. Esta etapa deberá incluir la validación de datos y el procesamiento y cálculos sobre los datos.
+- Almacenar los datos procesados en la base de datos.
+- Implementar un programador que encadene las tareas y administre las operaciones de flujo.
+
+**Recursos:**
 
 Para realizar esta práctica, se sugiere utilizar Java con el framework Spring Batch debido a su eficacia para el procesamiento por batchs. No obstante, puedes elegir el lenguaje de programación y las herramientas que prefieras, siempre que permitan la programación concurrente y sean adecuados para el procesamiento por batchs.
 
@@ -40,14 +41,17 @@ Rúbrica para la Práctica de Programación Concurrente:
 - El programa procesa los datos correctamente utilizando programación concurrente. Esto incluye la validación de los datos y los cálculos realizados sobre los datos (15 puntos).
 - El programa almacena correctamente los datos procesados en la base de datos (10 puntos).
 - Implementación correcta del programador que encadena las tareas y administra las operaciones de flujo (5 puntos).
+  
 **Concurrencia y Optimización (30 puntos):**
 
 - El programa implementa correctamente la programación concurrente para optimizar el tiempo de procesamiento (15 puntos).
 - El programa muestra una mejora significativa en el tiempo de procesamiento en comparación con una versión no concurrente del mismo (15 puntos).
+  
 **Manejo de errores y robustez (10 puntos):**
 
 - El programa puede manejar errores y excepciones de manera adecuada, incluyendo la capacidad de reanudar trabajos erróneos (5 puntos).
 - El programa es robusto y puede manejar diferentes casos de entrada, incluyendo datos inválidos o problemáticos (5 puntos).
+  
 **Documentación (20 puntos):**
 
 - La documentación explica correctamente el diseño del programa, cómo se implementó la programación concurrente, y cómo se gestiona el flujo de trabajo (10 puntos).
