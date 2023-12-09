@@ -1,70 +1,57 @@
+# Enunciado de la Práctica Spring Batch
 
+**Objetivo:**
 
-## Práctica Spring Batch: Procesamiento Concurrente de Transacciones Bancarias
+El objetivo de esta práctica es desarrollar una aplicación de procesamiento por batchs, utilizando la programación concurrente para optimizar el rendimiento y minimizar el tiempo de procesamiento.
 
-### Objetivo:
+El programa deberá leer un gran volumen de datos, procesar estos datos de manera eficiente utilizando programación concurrente y, finalmente, almacenar los datos procesados. El contexto de los datos será definido a continuación.
 
-Desarrollar una aplicación de procesamiento por lotes (batch) que utilice programación concurrente para optimizar el rendimiento y minimizar el tiempo de procesamiento.
+**Contexto:**
 
-### Contexto:
+Imaginemos que somos parte de una gran organización que maneja una enorme cantidad de datos de transacciones bancarias. Estos datos son almacenados en archivos planos y se necesita un programa que pueda procesar estos datos por la noche, cuando la base de datos no está bloqueada por otras tareas.
 
-Imaginemos que formamos parte de una gran organización que gestiona una enorme cantidad de datos de transacciones bancarias almacenados en archivos planos. Necesitamos un programa capaz de procesar estos datos durante la noche, evitando bloqueos en la base de datos por otras tareas.
+Además, se necesita que el programa pueda reanudar el trabajo en caso de fallos y sea capaz de manejar transacciones. Cada transacción constará de un lote de procesamiento de datos, por ejemplo, una confirmación cada 5,000 inserciones.
 
-### Detalles del Proyecto:
+El programa deberá estar construido de tal manera que pueda dividirse en pequeñas tareas que se ejecuten en secuencia, generando flujos de trabajo, de modo similar a los microservicios.
 
-#### Funciones a Implementar:
+## Detalles del Proyecto:
 
-1. **Leer Datos:**
-   - Leer los datos del archivo de transacciones bancarias.
+**El programa deberá implementar las siguientes funciones:**
 
-2. **Procesamiento Concurrente:**
-   - Procesar datos eficientemente utilizando programación concurrente.
-   - Incluir validación de datos, procesamiento y cálculos concurrentes.
+Leer los datos del archivo de transacciones bancarias.
+Procesar los datos utilizando programación concurrente. Esta etapa deberá incluir la validación de datos y el procesamiento y cálculos sobre los datos.
+Almacenar los datos procesados en la base de datos.
+Implementar un programador que encadene las tareas y administre las operaciones de flujo.
+Recursos:
 
-3. **Almacenamiento en la Base de Datos:**
-   - Almacenar los datos procesados en la base de datos.
+Para realizar esta práctica, se sugiere utilizar Java con el framework Spring Batch debido a su eficacia para el procesamiento por batchs. No obstante, puedes elegir el lenguaje de programación y las herramientas que prefieras, siempre que permitan la programación concurrente y sean adecuados para el procesamiento por batchs.
 
-4. **Programador de Tareas:**
-   - Implementar un programador que encadene tareas y administre el flujo de operaciones.
-
-#### Recursos:
-
-- Se sugiere utilizar Java con el framework Spring Batch para el procesamiento por lotes.
-- Se proporcionará un conjunto de datos de transacciones bancarias ficticias para pruebas.
+Se proporcionará un conjunto de datos de transacciones bancarias ficticias para fines de prueba.
 
 ### Entrega:
 
-La entrega debe incluir:
+La entrega de la práctica deberá incluir el código fuente de la aplicación, junto con una documentación que explique el diseño del programa, cómo se implementó la programación concurrente, y cómo se gestiona el flujo de trabajo. Además, debes incluir un análisis del rendimiento de la aplicación y cómo la programación concurrente ha optimizado el tiempo de procesamiento.
 
-- Código fuente de la aplicación.
-- Documentación que explique:
-  - Diseño del programa.
-  - Implementación de programación concurrente.
-  - Gestión del flujo de trabajo.
-- Análisis del rendimiento de la aplicación, destacando la optimización gracias a la programación concurrente.
+Rúbrica para la Práctica de Programación Concurrente:
 
-### Rúbrica para la Práctica de Programación Concurrente:
+**Funcionalidad del programa (40 puntos):**
 
-#### Funcionalidad del Programa (40 puntos):
+- El programa puede leer correctamente los datos del archivo de transacciones bancarias (10 puntos).
+- El programa procesa los datos correctamente utilizando programación concurrente. Esto incluye la validación de los datos y los cálculos realizados sobre los datos (15 puntos).
+- El programa almacena correctamente los datos procesados en la base de datos (10 puntos).
+- Implementación correcta del programador que encadena las tareas y administra las operaciones de flujo (5 puntos).
+**Concurrencia y Optimización (30 puntos):**
 
-- Correcta lectura de datos del archivo de transacciones bancarias (10 puntos).
-- Procesamiento correcto utilizando programación concurrente, incluyendo validación y cálculos (15 puntos).
-- Almacenamiento correcto de datos procesados en la base de datos (10 puntos).
-- Implementación correcta del programador de tareas (5 puntos).
+- El programa implementa correctamente la programación concurrente para optimizar el tiempo de procesamiento (15 puntos).
+- El programa muestra una mejora significativa en el tiempo de procesamiento en comparación con una versión no concurrente del mismo (15 puntos).
+**Manejo de errores y robustez (10 puntos):**
 
-#### Concurrencia y Optimización (30 puntos):
+- El programa puede manejar errores y excepciones de manera adecuada, incluyendo la capacidad de reanudar trabajos erróneos (5 puntos).
+- El programa es robusto y puede manejar diferentes casos de entrada, incluyendo datos inválidos o problemáticos (5 puntos).
+**Documentación (20 puntos):**
 
-- Implementación correcta de la programación concurrente para optimizar el tiempo de procesamiento (15 puntos).
-- Mejora significativa en el tiempo de procesamiento en comparación con la versión no concurrente (15 puntos).
+- La documentación explica correctamente el diseño del programa, cómo se implementó la programación concurrente, y cómo se gestiona el flujo de trabajo (10 puntos).
+- La documentación incluye un análisis del rendimiento de la aplicación, explicando cómo la programación concurrente ha optimizado el tiempo de procesamiento (10 puntos).
+Los puntos se otorgarán de manera proporcional en cada categoría en función de la correcta implementación y cumplimiento de los requisitos. En caso de presentar dudas o dificultades durante la realización de la práctica, es recomendable consultar con el profesor para obtener la orientación necesaria.
 
-#### Manejo de Errores y Robustez (10 puntos):
 
-- Manejo adecuado de errores y excepciones, incluyendo la capacidad de reanudar trabajos erróneos (5 puntos).
-- Robustez para manejar diferentes casos de entrada, incluyendo datos inválidos o problemáticos (5 puntos).
-
-#### Documentación (20 puntos):
-
-- Explicación correcta del diseño del programa, implementación de la programación concurrente y gestión del flujo de trabajo (10 puntos).
-- Análisis del rendimiento de la aplicación, explicando la optimización mediante la programación concurrente (10 puntos).
-
-**Nota:** Los puntos se asignarán proporcionalmente en cada categoría según la implementación y el cumplimiento de los requisitos. Se recomienda consultar al profesor en caso de dudas o dificultades durante la práctica.
