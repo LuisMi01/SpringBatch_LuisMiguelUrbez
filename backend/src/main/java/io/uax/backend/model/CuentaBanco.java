@@ -15,6 +15,6 @@ public class CuentaBanco {
     @Size(max = 255)
     private String iban;
 
-    private List<Double> totalDinero;
+    private Double totalDinero;
 
 }
