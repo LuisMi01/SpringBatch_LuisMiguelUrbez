@@ -1,7 +1,8 @@
 spring:
   data:
     mongodb:
-      uri: ${MONGODB_DATABASE_URL:"mongodb+srv://lmurbezv:LuisMiguel2303@clusterbanco.1vyevyh.mongodb.net/banco_database"}
+      database: banco_database
+      uri: ${MONGODB_DATABASE_URL:"mongodb+srv://lmurbezv:LuisMiguel2303@clusterbanco.1vyevyh.mongodb.net"}
       auto-index-creation: true
   docker:
     compose:

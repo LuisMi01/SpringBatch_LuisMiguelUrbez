@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 
@@ -15,26 +16,22 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final MongoTemplate mongoTemplate;
 
-    public UsuarioService(final UsuarioRepository usuarioRepository) {
+    public UsuarioService(final UsuarioRepository usuarioRepository, final MongoTemplate mongoTemplate) {
         this.usuarioRepository = usuarioRepository;
+        this.mongoTemplate = mongoTemplate;
     }
-    public List<Usuario> allUsers(){
-        System.out.println(usuarioRepository.findAll().toString());
-        return usuarioRepository.findAll();
-    }
-
-
-
-    /*
 
     public List<UsuarioDTO> findAll() {
-        final List<Usuario> usuarios = usuarioRepository.findAll(Sort.by("_id"));
+        System.out.println("Conectado a la base de datos: " + mongoTemplate.getDb().getName());
+        System.out.println("Conectado a la colección: " + mongoTemplate.getCollectionName(Usuario.class));
+        final List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
                 .map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
                 .toList();
     }
-
+/*
     public UsuarioDTO get(final Long id) {
         return usuarioRepository.findById(id)
                 .map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
@@ -57,7 +54,7 @@ public class UsuarioService {
     public void delete(final Long id) {
         usuarioRepository.deleteById(id);
     }
-
+*/
     private UsuarioDTO mapToDTO(final Usuario usuario, final UsuarioDTO usuarioDTO) {
         usuarioDTO.set_id(usuario.get_id());
         usuarioDTO.setNombre(usuario.getNombre());
@@ -75,6 +72,6 @@ public class UsuarioService {
         usuario.setCuenta(usuarioDTO.getCuenta());
         usuario.setMovimientos(usuarioDTO.getMovimientos());
         return usuario;
-    }*/
+    }
 
 }

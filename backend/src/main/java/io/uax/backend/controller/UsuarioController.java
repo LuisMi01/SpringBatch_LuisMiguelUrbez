@@ -2,6 +2,7 @@ package io.uax.backend.controller;
 
 
 import io.uax.backend.domain.Usuario;
+import io.uax.backend.model.UsuarioDTO;
 import io.uax.backend.service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,9 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+    //devuelve los usuarios
     @GetMapping
-    public ResponseEntity<List<Usuario>> getAllUsers() {
-        return new ResponseEntity<List<Usuario>>(usuarioService.allUsers(), HttpStatus.OK);
+    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
+        return ResponseEntity.ok(usuarioService.findAll());
     }
 }
