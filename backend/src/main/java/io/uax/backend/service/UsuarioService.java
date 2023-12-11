@@ -5,6 +5,7 @@ import io.uax.backend.model.UsuarioDTO;
 import io.uax.backend.repos.UsuarioRepository;
 import io.uax.backend.util.NotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
@@ -24,14 +25,27 @@ public class UsuarioService {
     }
 
     public List<UsuarioDTO> findAll() {
-        System.out.println("Conectado a la base de datos: " + mongoTemplate.getDb().getName());
-        System.out.println("Conectado a la colección: " + mongoTemplate.getCollectionName(Usuario.class));
-        final List<Usuario> usuarios = usuarioRepository.findAll();
-        return usuarios.stream()
+        List<UsuarioDTO> usuarios = usuarioRepository.findAll().stream()
                 .map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
-                .toList();
+                .collect(Collectors.toList());
+        System.out.println("Usuarios encontrados: " + usuarios);
+        return usuarios;
     }
-/*
+
+    /*
+    public void getGroceryItemByName(String name) {
+        System.out.println("Getting item by name: " + name);
+        Usuario item = usuarioRepository.findItemByName(name);
+        System.out.println(getItemDetails(item));
+    }
+
+    // 4. Get count of documents in the collection
+    public void findCountOfGroceryItems() {
+        long count = usuarioRepository.count();
+        System.out.println("Number of documents in the collection: " + count);
+    }
+
+
     public UsuarioDTO get(final Long id) {
         return usuarioRepository.findById(id)
                 .map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
@@ -55,17 +69,18 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 */
-    private UsuarioDTO mapToDTO(final Usuario usuario, final UsuarioDTO usuarioDTO) {
-        usuarioDTO.set_id(usuario.get_id());
-        usuarioDTO.setNombre(usuario.getNombre());
-        usuarioDTO.setEmail(usuario.getEmail());
-        usuarioDTO.setPassword(usuario.getPassword());
-        usuarioDTO.setCuenta(usuario.getCuenta());
-        usuarioDTO.setMovimientos(usuario.getMovimientos());
-        return usuarioDTO;
-    }
+private UsuarioDTO mapToDTO(final Usuario usuario, final UsuarioDTO usuarioDTO) {
+    usuarioDTO.setId(usuario.getId());
+    usuarioDTO.setNombre(usuario.getNombre());
+    usuarioDTO.setEmail(usuario.getEmail());
+    usuarioDTO.setPassword(usuario.getPassword());
+    usuarioDTO.setCuenta(usuario.getCuenta());
+    usuarioDTO.setMovimientos(usuario.getMovimientos());
+    return usuarioDTO;
+}
 
     private Usuario mapToEntity(final UsuarioDTO usuarioDTO, final Usuario usuario) {
+        usuario.setId(usuarioDTO.getId());
         usuario.setNombre(usuarioDTO.getNombre());
         usuario.setEmail(usuarioDTO.getEmail());
         usuario.setPassword(usuarioDTO.getPassword());

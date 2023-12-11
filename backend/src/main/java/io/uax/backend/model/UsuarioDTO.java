@@ -1,11 +1,15 @@
 package io.uax.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 
 @Getter
@@ -16,7 +20,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "banco")
 public class UsuarioDTO {
 
-    private ObjectId _id;
+
+    @Id
+    @NotNull
+    private Integer id;
 
     @NotNull
     @Size(max = 255)
@@ -35,7 +42,6 @@ public class UsuarioDTO {
     private CuentaBanco cuenta;
 
     @NotNull
-    @Valid
-    private MovimientosUsuario movimientos;
+    private List<Double> movimientos;
 
 }

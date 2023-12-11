@@ -18,8 +18,8 @@ public class UsuarioListener extends AbstractMongoEventListener<Usuario> {
 
     @Override
     public void onBeforeConvert(final BeforeConvertEvent<Usuario> event) {
-        if (event.getSource().get_id() == null) {
-            event.getSource().set_id(primarySequenceService.getNextValue());
+        if (event.getSource().getId() == null) {
+            event.getSource().setId(primarySequenceService.getNextValue());
         }
     }
 

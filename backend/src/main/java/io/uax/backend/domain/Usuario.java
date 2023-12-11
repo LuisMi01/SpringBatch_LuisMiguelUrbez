@@ -1,5 +1,6 @@
 package io.uax.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.uax.backend.model.CuentaBanco;
 import io.uax.backend.model.MovimientosUsuario;
 import jakarta.validation.Valid;
@@ -11,6 +12,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -21,7 +24,8 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
 public class Usuario {
 
     @Id
-    private ObjectId _id;
+    @NotNull
+    private Integer id;
 
     @NotNull
     @Size(max = 255)
@@ -41,8 +45,6 @@ public class Usuario {
     private CuentaBanco cuenta;
 
     @NotNull
-    @Valid
-    @DocumentReference
-    private MovimientosUsuario movimientos;
+    private List<Double> movimientos;
 
 }

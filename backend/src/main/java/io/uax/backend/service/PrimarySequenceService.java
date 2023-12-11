@@ -5,6 +5,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
 import io.uax.backend.domain.PrimarySequence;
+import jakarta.validation.constraints.NotNull;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
@@ -22,7 +23,7 @@ public class PrimarySequenceService {
         this.mongoOperations = mongoOperations;
     }
 
-    public ObjectId getNextValue() {
+    public @NotNull Integer getNextValue() {
         PrimarySequence primarySequence = mongoOperations.findAndModify(
                 query(where("_id").is(PRIMARY_SEQUENCE)),
                 new Update().inc("seq", 1),
@@ -34,7 +35,7 @@ public class PrimarySequenceService {
             primarySequence.setSeq(10000);
             mongoOperations.insert(primarySequence);
         }
-        return new ObjectId(String.valueOf(primarySequence.getSeq()));
+        return Math.toIntExact(primarySequence.getSeq());
     }
 
 }
