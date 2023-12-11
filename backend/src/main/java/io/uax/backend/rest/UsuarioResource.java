@@ -1,10 +1,13 @@
 package io.uax.backend.rest;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.uax.backend.domain.Usuario;
 import io.uax.backend.model.UsuarioDTO;
 import io.uax.backend.service.UsuarioService;
 import jakarta.validation.Valid;
 import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +32,11 @@ public class UsuarioResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
-        return ResponseEntity.ok(usuarioService.findAll());
+    public ResponseEntity<List<Usuario>> getAllUsuarios() {
+        return ResponseEntity.ok(usuarioService.allUsers());
     }
 
+    /*
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDTO> getUsuario(@PathVariable(name = "id") final Long id) {
         return ResponseEntity.ok(usuarioService.get(id));
@@ -40,9 +44,9 @@ public class UsuarioResource {
 
     @PostMapping
     @ApiResponse(responseCode = "201")
-    public ResponseEntity<Long> createUsuario(@RequestBody @Valid final UsuarioDTO usuarioDTO) {
-        final Long createdId = usuarioService.create(usuarioDTO);
-        return new ResponseEntity<>(createdId, HttpStatus.CREATED);
+    public ResponseEntity<ObjectId> createUsuario(@RequestBody @Valid final UsuarioDTO usuarioDTO) {
+        final ObjectId createdId = usuarioService.create(usuarioDTO);
+        return new ResponseEntity<ObjectId>(createdId, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -58,5 +62,5 @@ public class UsuarioResource {
         usuarioService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
+*/
 }

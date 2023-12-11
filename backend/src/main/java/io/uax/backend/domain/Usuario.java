@@ -5,19 +5,23 @@ import io.uax.backend.model.MovimientosUsuario;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 
-@Document
 @Getter
 @Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "banco")
 public class Usuario {
 
     @Id
-    private Long id;
+    private ObjectId _id;
 
     @NotNull
     @Size(max = 255)
@@ -33,10 +37,12 @@ public class Usuario {
 
     @NotNull
     @Valid
+    @DocumentReference
     private CuentaBanco cuenta;
 
     @NotNull
     @Valid
+    @DocumentReference
     private MovimientosUsuario movimientos;
 
 }

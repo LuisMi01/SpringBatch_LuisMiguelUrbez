@@ -5,6 +5,8 @@ import io.uax.backend.model.UsuarioDTO;
 import io.uax.backend.repos.UsuarioRepository;
 import io.uax.backend.util.NotFoundException;
 import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,17 @@ public class UsuarioService {
     public UsuarioService(final UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
+    public List<Usuario> allUsers(){
+        System.out.println(usuarioRepository.findAll().toString());
+        return usuarioRepository.findAll();
+    }
+
+
+
+    /*
 
     public List<UsuarioDTO> findAll() {
-        final List<Usuario> usuarios = usuarioRepository.findAll(Sort.by("id"));
+        final List<Usuario> usuarios = usuarioRepository.findAll(Sort.by("_id"));
         return usuarios.stream()
                 .map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
                 .toList();
@@ -31,10 +41,10 @@ public class UsuarioService {
                 .orElseThrow(NotFoundException::new);
     }
 
-    public Long create(final UsuarioDTO usuarioDTO) {
+    public ObjectId create(final UsuarioDTO usuarioDTO) {
         final Usuario usuario = new Usuario();
         mapToEntity(usuarioDTO, usuario);
-        return usuarioRepository.save(usuario).getId();
+        return usuarioRepository.save(usuario).get_id();
     }
 
     public void update(final Long id, final UsuarioDTO usuarioDTO) {
@@ -49,7 +59,7 @@ public class UsuarioService {
     }
 
     private UsuarioDTO mapToDTO(final Usuario usuario, final UsuarioDTO usuarioDTO) {
-        usuarioDTO.setId(usuario.getId());
+        usuarioDTO.set_id(usuario.get_id());
         usuarioDTO.setNombre(usuario.getNombre());
         usuarioDTO.setEmail(usuario.getEmail());
         usuarioDTO.setPassword(usuario.getPassword());
@@ -65,6 +75,6 @@ public class UsuarioService {
         usuario.setCuenta(usuarioDTO.getCuenta());
         usuario.setMovimientos(usuarioDTO.getMovimientos());
         return usuario;
-    }
+    }*/
 
 }

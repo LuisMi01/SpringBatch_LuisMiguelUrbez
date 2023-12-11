@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: ${MONGODB_DATABASE_URL:mongodb+srv://${env.MONGO_USER}:${env.MONGO_PASSWORD}@${env.MONGO_CLUSTER}
+      uri: ${MONGODB_DATABASE_URL:"mongodb+srv://lmurbezv:LuisMiguel2303@clusterbanco.1vyevyh.mongodb.net/banco_database"}
       auto-index-creation: true
   docker:
     compose:
