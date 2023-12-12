@@ -6,15 +6,9 @@
     </head>
     <body>
         <div layout:fragment="content">
-            <h1 class="grow text-3xl md:text-4xl font-medium mb-8">[[#{home.index.headline}]]</h1>
-            <p class="mb-4">[(#{home.index.text})]</p>
-            <p class="mb-12">[(#{home.index.swagger})]</p>
-            <div class="md:w-2/5 mb-12">
-                <h4 class="text-2xl font-medium mb-4">[[#{home.index.exploreEntities}]]</h4>
-                <div class="flex flex-col border border-gray-300 rounded">
-                    <a th:href="@{/usuarios}" class="w-full border-gray-300 hover:bg-gray-100 rounded-t rounded-b px-4 py-2">[[#{usuario.list.headline}]]</a>
-                </div>
-            </div>
+            <h1 class="mb-4">[[#{home.index.headline}]]</h1>
+            <p>[(#{home.index.text})]</p>
+            <p class="mb-5">[(#{home.index.swagger})]</p>
         </div>
     </body>
 </html>
