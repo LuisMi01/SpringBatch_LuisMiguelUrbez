@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="baseBanco" uuid="e5ce73a3-5fbd-4ac7-8815-133aa028756e">
+    <data-source source="LOCAL" name="banco_database@clusterbanco.1vyevyh.mongodb.net" uuid="27377ff3-bc88-42f5-92b4-90159833ccf9">
       <driver-ref>mongo</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/backend/src/main/resources/application.yml</remarks>
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb+srv://clusterbanco.1vyevyh.mongodb.net/</jdbc-url>
+      <jdbc-url>mongodb+srv://clusterbanco.1vyevyh.mongodb.net/?retryWrites=true&amp;w=majority</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
         <property name="com.intellij.clouds.kubernetes.db.container.port" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>

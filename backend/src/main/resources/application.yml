@@ -1,8 +1,12 @@
 spring:
   data:
     mongodb:
-      uri: ${MONGODB_DATABASE_URL:mongodb://localhost:27017/prueba}
+      database: banco_database
+      uri: ${MONGODB_DATABASE_URL:mongodb+srv://lmurbezv:LuisMiguel2303@clusterbanco.1vyevyh.mongodb.net/}
       auto-index-creation: true
   docker:
     compose:
+      file: backend/docker-compose.yml
       lifecycle-management: start-only
+springdoc:
+  pathsToMatch: /api/**
