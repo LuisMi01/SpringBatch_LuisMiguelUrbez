@@ -4,7 +4,7 @@
     "next": "^14.0.4"
   },
   "scripts": {
-    "start": "npm run start:frontend && npm run start:backend",
+    "start": "npm run start:backend && npm run start:frontend",
     "start:frontend": "cd frontend && npm run build && npm run start",
     "start:backend": "cd backend && npm start"
   },

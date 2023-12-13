@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "frontend/node_modules/.bin/next dev",
-    "build": "frontend/node_modules/.bin/next build",
-    "start": "frontend/node_modules/.bin/next start",
-    "lint": "frontend/node_modules/.bin/next lint"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "react": "^18",
