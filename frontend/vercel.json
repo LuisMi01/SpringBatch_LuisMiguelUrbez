@@ -2,20 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "frontend/src/app/page.tsx",
-      "use": "@vercel/node"
+      "src": "/frontend/package.json",
+      "use": "@vercel/next"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/frontend/$1"
+      "dest": "/$1"
     }
   ],
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend/"
+      "destination": "/backend/api/$1"
     }
   ]
 }
