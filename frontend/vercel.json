@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "frontend/package.json",
+      "src": "frontend/src/app/page.tsx",
       "use": "@vercel/node"
     }
   ],
@@ -15,7 +15,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend/api/$1"
+      "destination": "/backend/"
     }
   ]
 }
