@@ -2,10 +2,12 @@
   "dependencies": {
     "mongodb": "^6.3.0"
   },
-
   "scripts": {
     "start": "npm run start:frontend && npm run start:backend",
-    "start:frontend": "cd frontend && npm start",
+    "start:frontend": "cd frontend && npm run build && npm run start",
     "start:backend": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
