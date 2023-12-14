@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="ac192c75-f325-4e40-a766-f2b545df4fbc">
+    <data-source source="LOCAL" name="baseBanco" uuid="44fe0b7a-7a82-400d-a62f-d6ff417819dc">
       <driver-ref>mongo</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
-      <jdbc-url>mongodb://localhost:27017</jdbc-url>
+      <jdbc-url>mongodb+srv://clusterbanco.1vyevyh.mongodb.net/?retryWrites=true&amp;w=majority</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />

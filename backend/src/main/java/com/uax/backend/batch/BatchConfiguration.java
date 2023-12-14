@@ -4,9 +4,10 @@ import com.uax.backend.model.Usuario;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.data.MongoItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -17,15 +18,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableBatchProcessing
 public class BatchConfiguration {
     @Autowired
-    public JobBuilderFactory jobBuilderFactory;
+    public JobRepository jobRepository;
 
     @Autowired
-    public StepBuilderFactory stepBuilderFactory;
+    public PlatformTransactionManager transactionManager;
 
     @Autowired
     public MongoTemplate mongoTemplate;
@@ -60,10 +62,18 @@ public class BatchConfiguration {
     }
 
     @Bean
-    public Job importUserJob(JobCompletionNotificationListener listener) {
-        return jobBuilderFactory.get("importUserJob")
+    public Job importUserJob(JobCompletionNotificationListener listener){
+
+        //crear el job builder para versiones anteriores a la 5.0
+        JobBuilder jobBuilder = new JobBuilder("importUserJob")
+                .repository(jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
+                .repository(jobRepository)
+                .incrementer(new RunIdIncrementer())
+               .listener(listener);
+
+        return jobBuilder
                 .flow(step1())
                 .end()
                 .build();
@@ -71,7 +81,9 @@ public class BatchConfiguration {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1")
+        return new StepBuilder("step1")
+                .repository(jobRepository)
+                .transactionManager(transactionManager)
                 .<Usuario, Usuario>chunk(10)
                 .reader(reader())
                 .processor(processor())
