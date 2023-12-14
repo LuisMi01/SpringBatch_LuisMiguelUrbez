@@ -1,7 +1,7 @@
 package com.uax.backend.controller;
 
-import com.uax.backend.model.Usuario;
-import com.uax.backend.service.UsuarioService;
+import com.uax.backend.model.Transaction;
+import com.uax.backend.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,30 +11,30 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    private final UsuarioService usuarioService;
+    private final TransactionService transactionService;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public UsuarioController(TransactionService transactionService) {
+        this.transactionService = transactionService;
     }
 
     @GetMapping
-    public List<Usuario> getAllUsuarios() {
-        return usuarioService.getAllUsuarios();
+    public List<Transaction> getAllUsuarios() {
+        return transactionService.getAllUsuarios();
     }
 
     @GetMapping("/{id}")
-    public Usuario getUsuarioById(@PathVariable String id) {
-        return usuarioService.getUsuarioById(id);
+    public Transaction getUsuarioById(@PathVariable String id) {
+        return transactionService.getUsuarioById(id);
     }
 
     @PostMapping
-    public Usuario saveUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.saveUsuario(usuario);
+    public Transaction saveUsuario(@RequestBody Transaction usuario) {
+        return transactionService.saveUsuario(usuario);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUsuario(@PathVariable String id) {
-        usuarioService.deleteUsuario(id);
+        transactionService.deleteUsuario(id);
     }
 }

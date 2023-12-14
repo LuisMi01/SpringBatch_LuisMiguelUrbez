@@ -7,21 +7,18 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.List;
+import java.util.Date;
 
 @Data
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "banco")
-public class Usuario {
+public class Transaction {
     @Id
     private String id;
-    private String nombre;
-    private String email;
-    private String password;
-    private Double saldo;
-    private String cuenta;
-    private List<Double> movimientos;
+    private String accountId;
+    private String transactionType;
+    private double amount;
+    private Date transactionDate;
 }

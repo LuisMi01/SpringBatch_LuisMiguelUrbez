@@ -1,6 +1,6 @@
 package com.uax.backend.batch;
 
-import com.uax.backend.model.Usuario;
+import com.uax.backend.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.BatchStatus;
@@ -30,10 +30,10 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             log.info("Fin del job. Resultado para verificación:");
 
-            List<Usuario> results = mongoTemplate.findAll(Usuario.class, "banco");
+            List<Transaction> results = mongoTemplate.findAll(Transaction.class, "banco");
 
-            for (Usuario usuario : results) {
-                log.info("[" + usuario + "] en base.");
+            for (Transaction transaction : results) {
+                log.info("[" + transaction + "] en base.");
             }
 
         }
