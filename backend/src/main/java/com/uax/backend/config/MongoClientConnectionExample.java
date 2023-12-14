@@ -1,4 +1,4 @@
-package config;
+package com.uax.backend.config;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
