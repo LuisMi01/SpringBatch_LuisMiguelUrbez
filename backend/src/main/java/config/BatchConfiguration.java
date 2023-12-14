@@ -9,6 +9,7 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableBatchProcessing
@@ -29,6 +31,15 @@ public class BatchConfiguration {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Bean
+    public JobRepository jobRepository(PlatformTransactionManager transactionManager, DataSource dataSource) throws Exception {
+        JobRepositoryFactoryBean factory = new JobRepositoryFactoryBean();
+        factory.setDatabaseType(DatabaseType.MONGODB.getProductName());
+        factory.setTransactionManager(transactionManager);
+        factory.setDataSource(dataSource);
+        return factory.getObject();
+    }
 
     @Bean
     public Job myJob(Step myStep) {
