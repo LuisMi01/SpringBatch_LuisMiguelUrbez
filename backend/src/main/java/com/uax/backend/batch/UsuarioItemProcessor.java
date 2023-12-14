@@ -20,6 +20,8 @@ public class UsuarioItemProcessor implements ItemProcessor<Usuario, Usuario> {
         final Double saldo = usuario.getSaldo();
         final String cuenta = usuario.getCuenta().toUpperCase();
         final List<Double> movimientos = usuario.getMovimientos();
+
+        //constructor para crear el objeto Usuario
         final Usuario transformedComunidad = new
                 Usuario(id, nombre, email, password, saldo, cuenta, movimientos);
         log.info("Converting (" + usuario + ") into (" + transformedComunidad + ")");

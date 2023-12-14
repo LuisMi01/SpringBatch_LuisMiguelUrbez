@@ -1,6 +1,5 @@
 package com.uax.backend.batch;
 
-
 import com.uax.backend.model.Usuario;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 @Configuration
 @EnableBatchProcessing
@@ -33,10 +33,11 @@ public class BatchConfiguration {
     @Bean
     public FlatFileItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
-        reader.setResource(new ClassPathResource("comunidades.csv"));
+        reader.setResource(new ClassPathResource("MOCK_DATA.csv"));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
-                setNames(new String[]{"codigo", "nombre"});
+                //los atributos de la clase usuario
+                setNames(new String[]{"id", "nombre", "email", "password", "saldo", "cuenta", "movimientos"});
             }});
             setFieldSetMapper(new BeanWrapperFieldSetMapper<Usuario>() {{
                 setTargetType(Usuario.class);
@@ -54,7 +55,7 @@ public class BatchConfiguration {
     public MongoItemWriter<Usuario> writer() {
         MongoItemWriter<Usuario> writer = new MongoItemWriter<Usuario>();
         writer.setTemplate(mongoTemplate);
-        writer.setCollection("comunidad");
+        writer.setCollection("banco");
         return writer;
     }
 

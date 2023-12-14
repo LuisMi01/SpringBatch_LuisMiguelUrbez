@@ -30,7 +30,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
             log.info("Fin del job. Resultado para verificación:");
 
-            List<Usuario> results = mongoTemplate.findAll(Usuario.class, "comunidad");
+            List<Usuario> results = mongoTemplate.findAll(Usuario.class, "banco");
 
             for (Usuario usuario : results) {
                 log.info("[" + usuario + "] en base.");
