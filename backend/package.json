@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "start": "mvn spring-boot:run"
-  }
-}
