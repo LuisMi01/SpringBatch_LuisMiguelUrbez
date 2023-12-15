@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:postgresql://dpg-clu4ak5a73kc7399gb80-a/springbatchpostgres}
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://dpg-clu4ak5a73kc7399gb80-a.frankfurt-postgres.render.com/springbatchpostgres}
     username: ${JDBC_DATABASE_USERNAME:springbatchpostgres_user}
     password: ${JDBC_DATABASE_PASSWORD:J7oXGliqI4QbmDyyXwT7jA8zlBhi8Tx8}
     dbcp2:
@@ -24,13 +24,5 @@ spring:
       date: yyyy-MM-dd
       date-time: yyyy-MM-dd'T'HH:mm:ss
       time: HH:mm:ss
-  docker:
-    compose:
-      lifecycle-management: start-only
 springdoc:
   pathsToMatch: /api/**
-
-server:
-  tomcat:
-    accesslog:
-      enabled: true
