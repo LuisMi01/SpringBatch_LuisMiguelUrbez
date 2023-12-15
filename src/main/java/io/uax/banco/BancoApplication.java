@@ -11,4 +11,5 @@ public class BancoApplication {
         SpringApplication.run(BancoApplication.class, args);
     }
 
+    //comprobar la conexion a la base de datos
 }
