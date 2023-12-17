@@ -1,7 +1,7 @@
 # Fase de construcción de React
 FROM node:14 as react-build
 COPY src/main/frontend/package*.json ./
-RUN npm ci
+RUN npm install
 COPY src/main/frontend/ ./
 RUN npm run build
 
