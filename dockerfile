@@ -4,7 +4,7 @@ FROM eclipse-temurin:17-jdk
 # Instalar Maven
 RUN apt-get update && apt-get install -y maven
 
-WORKDIR application
+WORKDIR /application
 
 # Copiar el archivo pom.xml y descargar las dependencias
 COPY pom.xml ./
@@ -15,4 +15,6 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Ejecutar la aplicación
-CMD ["java", "-jar", "target/app-0.0.1-SNAPSHOT.jar"]
+COPY target/${JAR_FILE} app.jar
+
+CMD ["java", "-jar", "target/app.jar."]
