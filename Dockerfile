@@ -1,7 +1,7 @@
 # Fase de construcción de React
 FROM node:14 as react-build
 WORKDIR /app
-COPY src/main/frontend/package*.json ./
+COPY src/main/frontend/package.json ./
 RUN npm ci
 COPY src/main/frontend/ ./
 RUN npm run build
@@ -12,6 +12,7 @@ WORKDIR /application
 COPY pom.xml ./
 RUN mvn dependency:go-offline -B
 COPY src ./src
+
 # Copiar la construcción de React en resources/static
 COPY --from=react-build /app/build ./src/main/resources/static
 RUN mvn package -DskipTests
