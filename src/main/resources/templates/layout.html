@@ -28,12 +28,15 @@
 
         <!-- Botón a la derecha -->
         <div>
-            <a href="#" style="background-color: rgba(7,183,7,0.61); color: #000000; padding: 0.5rem 1rem; border-radius: 0.5rem;">Añadir usuarios</a>
+            <a href="#" style="background-color: green; color: #000000; padding: 0.5rem 1rem; border-radius: 0.5rem;">Añadir usuarios</a>
         </div>
     </nav>
 </header>
 <main class="my-12">
   <p>Hola</p>
+    <main class="my-12">
+        <div th:replace="usuario/list :: userList"></div>
+    </main>
 </main>
 </body>
 </html>
