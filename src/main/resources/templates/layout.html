@@ -5,38 +5,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
-<body style="padding: 0; margin: 0; background-color: #2D2D2D; color: #CCCCCC;">
-<header style="background-color: #393939; display: flex; flex-direction: row;">
-    <nav class="flex flex-wrap items-center justify-between py-2">
+<body style="padding: 0; margin: 0; background-color: #2D2D2D; color: white;">
+<header style="background-color: #393939; text-decoration: none">
+
+    <nav style="display: flex; justify-content: space-between; padding: 2rem;">
         <!-- Links a la izquierda -->
-        <div class="flex-grow">
-            <a th:href="@{/}" class="flex py-1.5 mr-4">
-                <span class="text-xl pl-3" style="color: #89DDFF;">Link 1</span>
-            </a>
-            <a th:href="@{/}" class="flex py-1.5 mr-4">
-                <span class="text-xl pl-3" style="color: #89DDFF;">Link 2</span>
-            </a>
+        <div>
+            <a th:href="@{/}" style="margin-right: 1rem; color: white;">Link 1</a>
+            <a th:href="@{/}" style="margin-right: 1rem; color: white;">Link 2</a>
         </div>
 
         <!-- Link a usuarios en el centro -->
-        <div class="flex-grow text-center">
-            <a th:href="@{/usuarios}" class="inline-block w-full hover:bg-gray-200 px-4 py-1" style="color: #89DDFF;">[[#{usuario.list.headline}]]</a>
+        <div>
+            <a href="#" style="background-color: #82AAFF; color: #000000; padding: 0.5rem 1rem; border-radius: 0.5rem;">Lista de usuarios</a>
         </div>
 
         <!-- Botón a la derecha -->
-        <div class="flex-grow text-right">
-            <a href="#" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2">Botón</a>
+        <div>
+            <a href="#" style="background-color: rgba(7,183,7,0.61); color: #000000; padding: 0.5rem 1rem; border-radius: 0.5rem;">Añadir usuarios</a>
         </div>
     </nav>
 </header>
 <main class="my-12">
-    <div class="container px-4 md:px-6">
-        <p th:if="${MSG_SUCCESS}" class="bg-green-200 border-green-800 text-green-800 border rounded p-4 mb-6" role="alert">[[${MSG_SUCCESS}]]</p>
-        <p th:if="${MSG_INFO}" class="bg-blue-200 border-blue-800 text-blue-800 border rounded p-4 mb-6" role="alert">[[${MSG_INFO}]]</p>
-        <p th:if="${MSG_ERROR}" class="bg-red-200 border-red-800 text-red-800 border rounded p-4 mb-6" role="alert">[[${MSG_ERROR}]]</p>
-        <div layout:fragment="content" />
-    </div>
+  <p>Hola</p>
 </main>
 </body>
 </html>
