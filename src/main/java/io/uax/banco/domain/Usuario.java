@@ -2,7 +2,10 @@ package io.uax.banco.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -10,6 +13,8 @@ import lombok.Setter;
 @Table(name = "usuarios")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @Id
