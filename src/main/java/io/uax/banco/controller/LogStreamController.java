@@ -1,7 +1,6 @@
 package io.uax.banco.controller;
-
-
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -13,24 +12,37 @@ import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@RestController
-public class LogsStreamController {
+@Controller
+public class LogStreamController {
+
     private final ExecutorService nonBlockingService = Executors.newCachedThreadPool();
 
-    @GetMapping(path = "/importCustomer", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping("/importCustomers")
+    public String streamLogsPage() {
+        return "import/importCustomers";
+    }
+
+    @GetMapping(path = "/importCustomers/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter streamLogs() {
         SseEmitter emitter = new SseEmitter();
-        nonBlockingService.execute(() -> {
+        // Use an ExecutorService to handle the log reading in a separate thread
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
             try {
-                for (String log : getLogs()) {
-                    emitter.send(log);
-                    Thread.sleep(1000);
-                }
+                Files.lines(Paths.get("myApp.log")).forEach(line -> {
+                    try {
+                        emitter.send(line);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
                 emitter.complete();
-            } catch (Exception ex) {
-                emitter.completeWithError(ex);
+            } catch (IOException e) {
+                emitter.completeWithError(e);
             }
         });
+        executor.shutdown();
+
         return emitter;
     }
 
