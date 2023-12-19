@@ -19,7 +19,7 @@ public class UsuarioDTO {
 
     @NotNull
     @Size(max = 255)
-    private String transactionType;
+    private Tipo transactionType;
 
     @NotNull
     private Double amount;

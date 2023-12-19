@@ -1,7 +1,7 @@
 package io.uax.banco.domain;
 
+import io.uax.banco.model.Tipo;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +31,7 @@ public class Usuario {
     private String accountId;
 
     @Column(nullable = false)
-    private String transactionType;
+    private Tipo transactionType;
 
     @Column(nullable = false)
     private Double amount;
