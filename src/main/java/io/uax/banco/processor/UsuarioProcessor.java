@@ -17,8 +17,8 @@ public class UsuarioProcessor implements ItemProcessor<Usuario,Usuario> {
         }
 
         // Validar amount
-        if (usuario.getAmount() == null || usuario.getAmount() < 0) {
-            throw new Exception("Amount no puede ser nulo o negativo");
+        if (usuario.getAmount() == null) {
+            throw new Exception("Amount no puede ser nulo");
         }
 
         // Validar transactionDate

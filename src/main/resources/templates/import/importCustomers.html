@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Banco | Luis Miguel Urbez</title>
+</head>
+<body>
+<div layout:fragment="content" style="position: fixed; left: 50%; transform: translateX(-50%);">
+    <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem; text-align: center; ">Entrada de datos</h1>
+    <p style="padding: 1rem; text-align: center; ">Aqui puede ver como sus datos se estan introduciendo en la base de datos</p>
+
+    <div class="card" style="background-color: #393939; color: white; padding: 1rem; text-align: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; ">
+        <script>
+            var eventSource = new EventSource("/importCustomer");
+
+            eventSource.onmessage = function(event) {
+                var container = document.getElementById("log-container");
+                var paragraph = document.createElement("p");
+                paragraph.textContent = event.data;
+                container.appendChild(paragraph);
+            };
+        </script>
+    </div>
+</div>
+</body>
+</html>
