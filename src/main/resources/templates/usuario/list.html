@@ -14,36 +14,19 @@
     </div>
     <div th:if="${usuarios.empty}">No hay usuarios para mostrar.</div>
     <div th:if="${!usuarios.empty}" class="overflow-x-auto">
-        <table class="w-full">
-            <thead>
-            <tr>
-                <th scope="col" class="text-left p-2">ID</th>
-                <th scope="col" class="text-left p-2">Account ID</th>
-                <th scope="col" class="text-left p-2">Tipo de Transacción</th>
-                <th scope="col" class="text-left p-2">Cantidad</th>
-                <th scope="col" class="text-left p-2">Fecha de Transacción</th>
-                <th><!-- --></th>
-            </tr>
-            </thead>
-            <tbody class="border-t-2 border-black">
-            <tr th:each="usuario : ${usuarios}" class="odd:bg-gray-100">
-                <td class="p-2">[[${usuario.id}]]</td>
-                <td class="p-2">[[${usuario.accountId}]]</td>
-                <td class="p-2">[[${usuario.transactionType}]]</td>
-                <td class="p-2">[[${usuario.amount}]]</td>
-                <td class="p-2">[[${usuario.transactionDate}]]</td>
-                <td class="p-2">
-                    <div class="float-right whitespace-nowrap">
-                        <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">Editar</a>
-                        <form th:action="@{/usuarios/delete/{id}(id=${usuario.id})}"
-                              th:data-confirm-message="¿Estás seguro de que quieres eliminar este usuario?" method="post" class="js-submit-confirm inline">
-                            <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">Eliminar</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div th:each="usuario : ${usuarios}" class="card" style="background-color: #393939; color: white; margin-bottom: 1rem; padding: 1rem; text-align: center;">
+            <p><strong>Account ID:</strong> [[${usuario.accountId}]]</p>
+            <p><strong>Transacción:</strong> [[${usuario.transactionType}]]</p>
+            <p><strong>Cantidad:</strong> [[${usuario.amount}]]</p>
+            <p><strong>Fecha de Transacción:</strong> [[${usuario.transactionDate}]]</p>
+            <div class="actions" style="margin-top: 1rem;">
+                <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">Editar</a>
+                <form th:action="@{/usuarios/delete/{id}(id=${usuario.id})}"
+                      th:data-confirm-message="'¿Estás seguro de que quieres eliminar este usuario?'" method="post" class="js-submit-confirm inline">
+                    <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">Eliminar</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 </body>
