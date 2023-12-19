@@ -57,7 +57,7 @@ public class SpringBatchConfig {
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setDelimiter(",");
         lineTokenizer.setStrict(false);
-        lineTokenizer.setNames("id", "accountId", "transactionType", "amount", "transactionDate");
+        lineTokenizer.setNames("id", "account_id", "amount",  "transaction_type", "transaction_date");
 
         BeanWrapperFieldSetMapper<Usuario> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(Usuario.class);
@@ -68,7 +68,7 @@ public class SpringBatchConfig {
 
     }
 
-    @Autowired
+   /* @Autowired
     private Scheduler scheduler;
 
     @PostConstruct
@@ -84,7 +84,7 @@ public class SpringBatchConfig {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Bean
     public UsuarioProcessor processor() {
