@@ -4,6 +4,11 @@ import io.uax.banco.model.UsuarioDTO;
 import io.uax.banco.service.UsuarioService;
 import io.uax.banco.util.WebUtils;
 import jakarta.validation.Valid;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +35,22 @@ public class UsuarioController {
         model.addAttribute("usuarios", usuarioService.findAll());
         return "usuario/list";
     }
+
+    /*@Autowired
+    JobLauncher jobLauncher;
+
+    @Autowired
+    Job processJob;
+
+    public String handle() throws Exception {
+
+        JobParameters jobParameters = new JobParametersBuilder()
+                .addLong("time", System.currentTimeMillis()).toJobParameters();
+
+        jobLauncher.run(processJob, jobParameters);
+
+        return "El job ha sido invocado";
+    }*/
 
     @GetMapping("/add")
     public String add(@ModelAttribute("usuario") final UsuarioDTO usuarioDTO) {

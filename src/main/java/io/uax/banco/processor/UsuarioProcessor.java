@@ -25,8 +25,6 @@ public class UsuarioProcessor implements ItemProcessor<Usuario,Usuario> {
         if (usuario.getTransactionDate() == null) {
             throw new Exception("TransactionDate no puede ser nulo");
         }
-
-        // Si todas las validaciones pasan, devolver el usuario
         return usuario;
     }
 }

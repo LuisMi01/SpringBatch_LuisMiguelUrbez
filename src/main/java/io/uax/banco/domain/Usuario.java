@@ -1,6 +1,5 @@
 package io.uax.banco.domain;
 
-import io.uax.banco.model.Tipo;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import lombok.Getter;

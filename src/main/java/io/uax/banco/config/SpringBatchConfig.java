@@ -4,7 +4,12 @@ package io.uax.banco.config;
 import io.uax.banco.domain.Usuario;
 import io.uax.banco.processor.UsuarioProcessor;
 import io.uax.banco.repos.UsuarioRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -17,6 +22,7 @@ import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -62,6 +68,24 @@ public class SpringBatchConfig {
 
     }
 
+    @Autowired
+    private Scheduler scheduler;
+
+    @PostConstruct
+    public void startScheduler() throws SchedulerException {
+        if (scheduler.isInStandbyMode()) {
+            scheduler.start();
+        }
+
+        try {
+            for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.anyJobGroup())) {
+                System.out.println("Job: " + jobKey.getName());
+            }
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Bean
     public UsuarioProcessor processor() {
         return new UsuarioProcessor();
@@ -78,7 +102,7 @@ public class SpringBatchConfig {
     @Bean
     public Step step1() {
         return new StepBuilder("csv-step", jobRepository)
-                .<Usuario, Usuario>chunk(100, transactionManager)
+                .<Usuario, Usuario>chunk(10, transactionManager)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())
