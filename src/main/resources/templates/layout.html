@@ -10,44 +10,47 @@
             text-decoration: none;
         }
     </style>
+    <link rel="stylesheet" th:href="@{/styles/Principal.css}" />
+
 </head>
 <body style="padding: 0; margin: 0; background-color: #2D2D2D; color: white;">
 <header style="background-color: #393939; text-decoration: none">
 
-    <nav style="display: flex; justify-content: space-between; padding: 2rem;">
+    <nav style="display: flex; justify-content: space-between; padding: 1.5rem;">
         <!-- Links a la izquierda -->
         <div>
             <a th:href="@{https://github.com/LuisMi01/SpringBatch_LuisMiguelUrbez}" style="margin-right: 1rem; color: white;">
                 <img th:src="@{/images/githubLogo.png}" alt="Github" style="width: 60px; height: 60px;">
             </a>
-            <a th:href="@{https://www.uax.com}" style="margin-right: 1rem; color: white;">
+            <a th:href="@{https://www.uax.com}" style=" color: white;">
                 <img th:src="@{/images/uaxlogo.png}" alt="UAX" style="width: 85px; height: 60px; border-radius: 10px;">            </a>
         </div>
 
-        <!-- Link a usuarios en el centro -->
-        <div>
-            <a href="#" style="background-color: #82AAFF; color: #000000; padding: 0.5rem 1rem; border-radius: 0.5rem;">Lista de usuarios</a>
+        <div style="position: absolute; left: 50%; transform: translateX(-50%);">
+            <a th:href="@{https://www.uax.com}" style=" color: white;">
+                <img th:src="@{/images/bancologo.png}" alt="Lista de usuarios" style="width: 80px; height: 80px;">
+            </a>
         </div>
 
         <!-- Botón a la derecha -->
         <div>
-            <a href="#" style="background-color: green; color: #000000; padding: 0.5rem 1rem; border-radius: 0.5rem;">Añadir usuarios</a>
+            <a href="#" style="background-color: green; color: #000000; border-radius: 0.5rem;">Añadir usuarios</a>
         </div>
     </nav>
 </header>
 <aside style="background-color: #1D1D1D; width: 200px; height: 100vh; position: fixed;">
     <ul style="list-style: none; padding: 0;">
         <li style="margin-bottom: 1rem;">
-            <a th:href="@{/}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 1px solid #333; font-size: 1.2rem;">Home</a>
+            <a th:href="@{/}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 2px solid #333; font-size: 1.3rem;">Home</a>
         </li>
         <li style="margin-bottom: 1rem;">
-            <a th:href="@{/usuarios}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 1px solid #333; font-size: 1.2rem;">Usuarios</a>
+            <a th:href="@{/usuarios}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 2px solid #333; font-size: 1.3rem;">Usuarios</a>
         </li>
         <li style="margin-bottom: 1rem;">
-            <a th:href="@{/usuarios/buscar}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 1px solid #333; font-size: 1.2rem;">Buscar Usuarios</a>
+            <a th:href="@{/usuarios/buscar}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 2px solid #333; font-size: 1.3rem;">Buscar Usuarios</a>
         </li>
         <li style="margin-bottom: 1rem;">
-            <a th:href="@{/usuarios/add}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 1px solid #333; font-size: 1.2rem;">Añadir nuevos usuarios</a>
+            <a th:href="@{/usuarios/add}" style="display: block; padding: 1rem; color: white; text-align: center; border-bottom: 2px solid #333; font-size: 1.3rem;">Añadir nuevos usuarios</a>
         </li>
     </ul>
 </aside>
