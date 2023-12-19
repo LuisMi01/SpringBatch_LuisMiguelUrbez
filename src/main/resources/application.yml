@@ -1,4 +1,9 @@
 spring:
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
   datasource:
     url: ${JDBC_DATABASE_URL:jdbc:postgresql://dpg-clu4ak5a73kc7399gb80-a.frankfurt-postgres.render.com/springbatchpostgres}
     username: ${JDBC_DATABASE_USERNAME:springbatchpostgres_user}
@@ -26,3 +31,7 @@ spring:
       time: HH:mm:ss
 springdoc:
   pathsToMatch: /api/**
+
+
+
+
