@@ -3,27 +3,40 @@
       layout:decorate="~{layout}">
 <head>
     <title>Lista de Usuarios</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content">
     <div class="flex flex-wrap mb-6">
-        <h1 class="grow text-3xl md:text-4xl font-medium mb-2">Lista de Usuarios</h1>
-        <div>
-            <a th:href="@{/usuarios/add}" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300  focus:ring-4 rounded px-5 py-2">Crear Nuevo Usuario</a>
+        <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem; text-align: center; ">Lista de usuarios</h1>
+        <div style="color: white; border: 2px solid white; border-radius: 3px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; ">
+            <a th:href="@{/usuarios/add}">Crear un unico usuario</a>
         </div>
     </div>
     <div th:if="${usuarios.empty}">No hay usuarios para mostrar.</div>
     <div th:if="${!usuarios.empty}" class="overflow-x-auto">
-        <div th:each="usuario : ${usuarios}" class="card" style="background-color: #393939; color: white; margin-bottom: 1rem; padding: 1rem; text-align: center;">
-            <p><strong>Account ID:</strong> [[${usuario.accountId}]]</p>
-            <p><strong>Transacción:</strong> [[${usuario.transactionType}]]</p>
-            <p><strong>Cantidad:</strong> [[${usuario.amount}]]</p>
-            <p><strong>Fecha de Transacción:</strong> [[${usuario.transactionDate}]]</p>
-            <div class="actions" style="margin-top: 1rem;">
-                <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">Editar</a>
+        <div th:each="usuario : ${usuarios}" class="card" style="background-color: #393939; color: white; padding: 1rem; text-align: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; width: calc(90%);margin-left: 0.5rem ">
+            <div style="display: flex;; margin-bottom: 0.5rem;">
+                <strong style="padding-right: 0.5rem;">ID cuenta</strong>
+                <strong style="padding-right: 0.5rem;">Transacción</strong>
+                <strong style="padding-right: 0.5rem;">Cantidad</strong>
+                <strong style="padding-right: 0.5rem;">Fecha</strong>
+            </div>
+            <div style="display: flex; margin-bottom: 0.5rem;">
+                <p style="padding-right: 0.5rem;">[[${usuario.accountId}]]</p>
+                <p style="padding-right: 0.5rem;">[[${usuario.transactionType}]]</p>
+                <p style="padding-right: 0.5rem;">[[${usuario.amount}]] €</p>
+                <p style="padding-right: 0.5rem;">[[${usuario.transactionDate}]]</p>
+            </div>
+            <div class="actions" style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+                <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" class="inline-block text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-300 focus:ring-3 rounded px-2.5 py-1.5 text-sm" style="margin-right: 0.5rem;">Editar</a>
                 <form th:action="@{/usuarios/delete/{id}(id=${usuario.id})}"
                       th:data-confirm-message="'¿Estás seguro de que quieres eliminar este usuario?'" method="post" class="js-submit-confirm inline">
-                    <button type="submit" class="inline-block text-white bg-gray-500 hover:bg-gray-600 focus:ring-gray-200 focus:ring-3 rounded px-2.5 py-1.5 text-sm">Eliminar</button>
+                    <button type="submit" class="inline-block text-white bg-red-600 hover:bg-red-700 focus:ring-red-300 focus:ring-3 rounded px-2.5 py-1.5 text-sm">Eliminar</button>
                 </form>
             </div>
         </div>
