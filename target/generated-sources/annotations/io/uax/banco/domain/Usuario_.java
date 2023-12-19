@@ -4,7 +4,6 @@ import jakarta.annotation.Generated;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.StaticMetamodel;
-import java.time.LocalDate;
 
 @StaticMetamodel(Usuario.class)
 @Generated("org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
@@ -34,7 +33,7 @@ public abstract class Usuario_ {
 	/**
 	 * @see io.uax.banco.domain.Usuario#transactionDate
 	 **/
-	public static volatile SingularAttribute<Usuario, LocalDate> transactionDate;
+	public static volatile SingularAttribute<Usuario, String> transactionDate;
 	
 	/**
 	 * @see io.uax.banco.domain.Usuario

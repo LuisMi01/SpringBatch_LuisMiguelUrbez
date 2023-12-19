@@ -41,6 +41,6 @@ public class Usuario {
     private Double amount;
 
     @Column(nullable = false, name = "transaction_date")
-    private LocalDate transactionDate;
+    private String transactionDate;
 
 }

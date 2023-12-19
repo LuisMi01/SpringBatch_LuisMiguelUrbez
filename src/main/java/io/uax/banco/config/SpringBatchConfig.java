@@ -32,9 +32,6 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 @Configuration
 @EnableBatchProcessing
 @AllArgsConstructor
@@ -79,20 +76,13 @@ public class SpringBatchConfig {
         lineTokenizer.setStrict(false);
         lineTokenizer.setNames("id", "account_id", "amount",  "transaction_type", "transaction_date");
 
-        lineMapper.setLineTokenizer(lineTokenizer);
-        lineMapper.setFieldSetMapper(fieldSet -> {
-            Usuario usuario = new Usuario();
-            usuario.setId(fieldSet.readLong("id"));
-            usuario.setAccountId(fieldSet.readString("account_id"));
-            usuario.setAmount(fieldSet.readDouble("amount"));
-            usuario.setTransactionType(fieldSet.readString("transaction_type"));
-            String date = fieldSet.readString("transaction_date");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            usuario.setTransactionDate(LocalDate.parse(date, formatter));
-            return usuario;
-        });
+        BeanWrapperFieldSetMapper<Usuario> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+        fieldSetMapper.setTargetType(Usuario.class);
 
+        lineMapper.setLineTokenizer(lineTokenizer);
+        lineMapper.setFieldSetMapper(fieldSetMapper);
         return lineMapper;
+
     }
 
    /* @Autowired
