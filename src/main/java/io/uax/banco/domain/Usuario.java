@@ -31,7 +31,7 @@ public class Usuario {
     private String accountId;
 
     @Column(nullable = false)
-    private Tipo transactionType;
+    private String transactionType;
 
     @Column(nullable = false)
     private Double amount;
