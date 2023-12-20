@@ -22,11 +22,14 @@
         <div th:each="usuario : ${usuarios}" class="card" style="background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
             <div style="display: flex;; margin-bottom: 0.5rem;">
                 <strong style="padding-right: 0.5rem;">ID cuenta</strong>
+                <p style="padding-right: 0.5rem;">[[${usuario.accountId}]]</p>
                 <strong style="padding-right: 0.5rem;">Transacción</strong>
                 <strong style="padding-right: 0.5rem;">Cantidad</strong>
                 <strong style="padding-right: 0.5rem;">Fecha</strong>
             </div>
             <div style="display: flex; margin-bottom: 0.5rem;">
+
+
                 <p style="padding-right: 0.5rem;">[[${usuario.accountId}]]</p>
                 <p style="padding-right: 0.5rem;">[[${usuario.transactionType}]]</p>
                 <p style="padding-right: 0.5rem;">[[${usuario.amount}]] €</p>
