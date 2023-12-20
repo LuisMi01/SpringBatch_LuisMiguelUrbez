@@ -1,6 +1,6 @@
 package io.uax.banco.controller;
 
-
+import io.uax.banco.components.FileNameStepExecutionListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/jobs")
@@ -30,10 +32,13 @@ public class JobController {
         return "import/jobs";
     }
 
+    @Autowired
+    private FileNameStepExecutionListener fileNameStepExecutionListener;
 
-
-    @GetMapping("/importCustomers")
-    public void importCsvToDBJob() {
+    @PostMapping("/upload")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        String uploadedFileName = file.getOriginalFilename();
+        fileNameStepExecutionListener.setFileName(uploadedFileName);
         JobParameters jobParameters = new JobParametersBuilder()
                 .addLong("startAt", System.currentTimeMillis()).toJobParameters();
         try {
@@ -41,7 +46,6 @@ public class JobController {
         } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException e) {
             e.printStackTrace();
         }
-
-
+        return "redirect:/importCustomers";
     }
 }
