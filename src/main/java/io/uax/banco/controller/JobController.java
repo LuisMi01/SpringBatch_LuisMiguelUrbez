@@ -1,7 +1,5 @@
 package io.uax.banco.controller;
 
-import io.uax.banco.components.FileNameJobExecutionListener;
-import io.uax.banco.components.FileNameStepExecutionListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -19,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 @Controller
 @RequestMapping("/jobs")
 public class JobController {
@@ -33,18 +36,20 @@ public class JobController {
         return "import/jobs";
     }
 
-    @Autowired
-    private FileNameJobExecutionListener fileNameJobExecutionListener;
-
     @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         String uploadedFileName = file.getOriginalFilename();
-        JobParameters jobParameters = new JobParametersBuilder()
-                .addString("fileName", uploadedFileName)
-                .addLong("startAt", System.currentTimeMillis()).toJobParameters();
         try {
+
+            Path path = Paths.get("src/main/resources/" + uploadedFileName);
+            Files.write(path, file.getBytes());
+
+            JobParameters jobParameters = new JobParametersBuilder()
+                    .addString("fileName", uploadedFileName)
+                    .addLong("startAt", System.currentTimeMillis()).toJobParameters();
             jobLauncher.run(job, jobParameters);
-        } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException e) {
+        } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException |
+                 JobParametersInvalidException | IOException e) {
             e.printStackTrace();
         }
         return "redirect:/importCustomers";

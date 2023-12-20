@@ -45,7 +45,7 @@ public class SpringBatchConfig {
     private UsuarioRepository usuarioRepository;
 
 
-    @Bean
+    /*@Bean
     public ItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
         reader.setResource(new ClassPathResource("Banco.csv"));
@@ -58,13 +58,13 @@ public class SpringBatchConfig {
             }});
         }});
         return reader;
-    }
+    }*/
 
-    /*@Bean
+    @Bean
     @StepScope
-    public FlatFileItemReader<Usuario> reader(@Value("#{jobParameters['fileName']}") String fileName) {
+    public FlatFileItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
-        reader.setResource(new FileSystemResource("src/main/resources/" + fileName));
+        reader.setResource(new FileSystemResource("src/main/resources/Banco.csv"));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});
@@ -74,7 +74,7 @@ public class SpringBatchConfig {
             }});
         }});
         return reader;
-    }*/
+    }
 
 
     private LineMapper<Usuario> lineMapper() {
@@ -93,24 +93,6 @@ public class SpringBatchConfig {
         return lineMapper;
 
     }
-
-   /* @Autowired
-    private Scheduler scheduler;
-
-    @PostConstruct
-    public void startScheduler() throws SchedulerException {
-        if (scheduler.isInStandbyMode()) {
-            scheduler.start();
-        }
-
-        try {
-            for (JobKey jobKey : scheduler.getJobKeys(GroupMatcher.anyJobGroup())) {
-                System.out.println("Job: " + jobKey.getName());
-            }
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-        }
-    }*/
 
     @Bean
     public UsuarioProcessor processor() {
@@ -136,7 +118,7 @@ public class SpringBatchConfig {
                 .build();
     }
     @Bean
-    public Job runJob() {
+    public Job job() {
         return new JobBuilder("Usuario", jobRepository)
                 .start(step1())
                 .build();
@@ -145,7 +127,7 @@ public class SpringBatchConfig {
     @Bean
     public TaskExecutor taskExecutor() {
         SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor();
-        asyncTaskExecutor.setConcurrencyLimit(10);
+        asyncTaskExecutor.setConcurrencyLimit(100);
         return asyncTaskExecutor;
     }
 }
