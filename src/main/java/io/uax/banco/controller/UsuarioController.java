@@ -23,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -53,24 +55,30 @@ public class UsuarioController {
                 .mapToDouble(Usuario::getAmount)
                 .sum();
 
-        //usuario que más ha gastado
-        Usuario maxSpender = usuarios.stream()
+        //usuario que mas ha gastado
+        Map<String, Double> spenders = usuarios.stream()
                 .filter(usuario -> usuario.getTransactionType().equals("Retiro"))
-                .max(Comparator.comparing(Usuario::getAmount))
+                .collect(Collectors.groupingBy(Usuario::getAccountId, Collectors.summingDouble(Usuario::getAmount)));
+
+        Map.Entry<String, Double> maxSpenderEntry = spenders.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
                 .orElse(null);
 
         //usuario que más ha ingresado
-        Usuario maxDepositor = usuarios.stream()
+        Map<String, Double> depositors = usuarios.stream()
                 .filter(usuario -> usuario.getTransactionType().equals("Ingreso"))
-                .max(Comparator.comparing(Usuario::getAmount))
+                .collect(Collectors.groupingBy(Usuario::getAccountId, Collectors.summingDouble(Usuario::getAmount)));
+
+        Map.Entry<String, Double> maxDepositorEntry = depositors.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
                 .orElse(null);
 
         model.addAttribute("usuarios", usuarios);
         model.addAttribute("totalAmount", totalAmount);
-        model.addAttribute("maxSpender", maxSpender != null ? maxSpender.getAccountId() : "N/A");
-        model.addAttribute("maxSpenderAmount", maxSpender != null ? maxSpender.getAmount() : 0);
-        model.addAttribute("maxDepositor", maxDepositor != null ? maxDepositor.getAccountId() : "N/A");
-        model.addAttribute("maxDepositorAmount", maxDepositor != null ? maxDepositor.getAmount() : 0);
+        model.addAttribute("maxSpender", maxSpenderEntry != null ? maxSpenderEntry.getKey() : "N/A");
+        model.addAttribute("maxSpenderAmount", maxSpenderEntry != null ? maxSpenderEntry.getValue() : 0);
+        model.addAttribute("maxDepositor", maxDepositorEntry != null ? maxDepositorEntry.getKey() : "N/A");
+        model.addAttribute("maxDepositorAmount", maxDepositorEntry != null ? maxDepositorEntry.getValue() : 0);
 
 
         return "usuario/list";
