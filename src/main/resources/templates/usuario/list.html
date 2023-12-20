@@ -13,13 +13,13 @@
 <div layout:fragment="content">
     <div class="flex flex-wrap mb-6">
         <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem; text-align: center; ">Lista de usuarios</h1>
-        <div style="color: white; border: 2px solid white; border-radius: 3px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; ">
-            <a th:href="@{/usuarios/add}">Crear un unico usuario</a>
+        <div style="color: white; border: 2px solid white; border-radius: 3px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; ">
+            <a th:href="@{/usuarios/add}" style="text-decoration: none; color: white">Crear un unico usuario</a>
         </div>
     </div>
     <div th:if="${usuarios.empty}">No hay usuarios para mostrar.</div>
     <div th:if="${!usuarios.empty}" class="overflow-x-auto">
-        <div th:each="usuario : ${usuarios}" class="card" style="background-color: #393939; color: white; padding: 1rem; text-align: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; width: calc(90%); margin: 0.5rem ">
+        <div th:each="usuario : ${usuarios}" class="card" style="background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
             <div style="display: flex;; margin-bottom: 0.5rem;">
                 <strong style="padding-right: 0.5rem;">ID cuenta</strong>
                 <strong style="padding-right: 0.5rem;">Transacción</strong>

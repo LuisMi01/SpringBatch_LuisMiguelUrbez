@@ -1,5 +1,6 @@
 package io.uax.banco.controller;
 
+import io.uax.banco.components.FileNameJobExecutionListener;
 import io.uax.banco.components.FileNameStepExecutionListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
@@ -33,13 +34,13 @@ public class JobController {
     }
 
     @Autowired
-    private FileNameStepExecutionListener fileNameStepExecutionListener;
+    private FileNameJobExecutionListener fileNameJobExecutionListener;
 
     @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         String uploadedFileName = file.getOriginalFilename();
-        fileNameStepExecutionListener.setFileName(uploadedFileName);
         JobParameters jobParameters = new JobParametersBuilder()
+                .addString("fileName", uploadedFileName)
                 .addLong("startAt", System.currentTimeMillis()).toJobParameters();
         try {
             jobLauncher.run(job, jobParameters);

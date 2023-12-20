@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resultado de la búsqueda</title>
+</head>
+<body>
+<h1>Resultado de la búsqueda</h1>
+<div th:if="${usuario}">
+    <p>AccountId: <span th:text="${usuario.accountId}"></span></p>
+    <p>Amount: <span th:text="${usuario.amount}"></span></p>
+    <!-- Añade aquí más campos según sea necesario -->
+</div>
+<div th:if="${errorMessage}">
+    <p th:text="${errorMessage}"></p>
+</div>
+</body>
+</html>

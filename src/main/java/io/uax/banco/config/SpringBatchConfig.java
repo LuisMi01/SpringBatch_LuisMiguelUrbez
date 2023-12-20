@@ -16,6 +16,7 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 
+import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
@@ -23,10 +24,12 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
@@ -39,10 +42,10 @@ public class SpringBatchConfig {
 
     private JobRepository jobRepository;
     private PlatformTransactionManager transactionManager;
-
     private UsuarioRepository usuarioRepository;
 
-    /*@Bean
+
+    @Bean
     public ItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
         reader.setResource(new ClassPathResource("Banco.csv"));
@@ -55,11 +58,11 @@ public class SpringBatchConfig {
             }});
         }});
         return reader;
-    }*/
+    }
 
-    @Bean
+    /*@Bean
     @StepScope
-    public FlatFileItemReader<Usuario> reader(@Value("#{stepExecutionContext['fileName']}") String fileName) {
+    public FlatFileItemReader<Usuario> reader(@Value("#{jobParameters['fileName']}") String fileName) {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
         reader.setResource(new FileSystemResource("src/main/resources/" + fileName));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
@@ -71,7 +74,8 @@ public class SpringBatchConfig {
             }});
         }});
         return reader;
-    }
+    }*/
+
 
     private LineMapper<Usuario> lineMapper() {
         DefaultLineMapper<Usuario> lineMapper = new DefaultLineMapper<>();
