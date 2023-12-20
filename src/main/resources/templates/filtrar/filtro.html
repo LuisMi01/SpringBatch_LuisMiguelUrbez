@@ -12,16 +12,22 @@
 <body>
 <div layout:fragment="content">
     <div class="flex flex-wrap mb-6">
-        <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem; text-align: center;">Filtrar Usuarios</h1>
+        <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem;">Filtrar Usuarios</h1>
 
-        <form th:action="@{/filtrar}" method="get" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-            <input type="number" name="minAmount" placeholder="Monto mínimo" style="padding: 0.5rem;">
-            <input type="number" name="maxAmount" placeholder="Monto máximo" style="padding: 0.5rem;">
-            <button type="submit" style="padding: 0.5rem; background-color: #4c4b4b; color: white; border: none;">Filtrar</button>
+        <form th:action="@{/filtrar}" method="get">
+            <input type="text" name="accountId" placeholder="Buscar por IBAN">
+            <button type="submit">Buscar</button>
         </form>
 
+
+        <!--/* <form th:action="@{/filtrar}" method="get" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+             <input type="number" name="minAmount" placeholder="Monto mínimo" style="padding: 0.5rem;">
+             <input type="number" name="maxAmount" placeholder="Monto máximo" style="padding: 0.5rem;">
+             <button type="submit" style="padding: 0.5rem; background-color: #4c4b4b; color: white; border: none;">Filtrar</button>
+         </form>
+
         <div th:if="${!usuarios.isEmpty()}">
-            <h2 style="margin-bottom: 1rem;">Resultados</h2>
+            <h2 style="margin-bottom: 1rem;">Resultado del filtro</h2>
             <div th:each="usuario : ${usuarios}" class="card" style="background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
                 <div style="display: flex;; margin-bottom: 0.5rem;">
                     <strong style="padding-right: 0.5rem;">ID cuenta</strong>
@@ -32,9 +38,23 @@
                     <p style="padding-right: 0.5rem;">[[${usuario.amount}]] €</p>
                 </div>
             </div>
+        </div>*/-->
+
+        <div th:if="${usuario}">
+            <h2>Usuario encontrado:</h2>
+            <div class="card" style="background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
+                <div style="display: flex;; margin-bottom: 0.5rem;">
+                    <strong style="padding-right: 0.5rem;">ID cuenta</strong>
+                    <strong style="padding-right: 0.5rem;">Cantidad</strong>
+                </div>
+                <div style="display: flex; margin-bottom: 0.5rem;">
+                    <p style="padding-right: 0.5rem;"><span th:text="${usuario.accountId}"></span></p>
+                    <p style="padding-right: 0.5rem;"><span th:text="${usuario.amount}"></span> €</p>
+                </div>
+            </div>
         </div>
 
-        <div th:if="${errorMessage}" style="color: red;">
+        <div th:if="${errorMessage}" style="color: red; text-align: center">
             <p th:text="${errorMessage}"></p>
         </div>
     </div>
