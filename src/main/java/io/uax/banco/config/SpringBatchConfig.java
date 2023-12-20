@@ -5,6 +5,7 @@ import io.uax.banco.domain.Usuario;
 import io.uax.banco.processor.UsuarioProcessor;
 import io.uax.banco.repos.UsuarioRepository;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
@@ -42,21 +43,29 @@ public class SpringBatchConfig {
 
     private UsuarioRepository usuarioRepository;
 
-
     /*@Bean
-    public FlatFileItemReader<Usuario> reader() {
-        FlatFileItemReader<Usuario> itemReader = new FlatFileItemReader<>();
-        itemReader.setResource(new FileSystemResource("src/main/resources/Banco.csv"));
-        itemReader.setName("lectorCSV");
-        itemReader.setLinesToSkip(1);
-        itemReader.setLineMapper(lineMapper());
-        return itemReader;
+    public ItemReader<Usuario> reader() {
+        FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
+        reader.setResource(new ClassPathResource("Banco.csv"));
+        reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
+            setLineTokenizer(new DelimitedLineTokenizer() {{
+                setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});
+            }});
+            setFieldSetMapper(new BeanWrapperFieldSetMapper<Usuario>() {{
+                setTargetType(Usuario.class);
+            }});
+        }});
+        return reader;
     }*/
+
+    @Autowired
+    private HttpSession session;
 
     @Bean
     public ItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
-        reader.setResource(new ClassPathResource("Banco.csv"));
+        String uploadedFileName = (String) session.getAttribute("uploadedFileName");
+        reader.setResource(new FileSystemResource("src/main/resources/" + uploadedFileName));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});

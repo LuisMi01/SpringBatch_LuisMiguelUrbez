@@ -1,50 +1,46 @@
-2023-12-19 23:48:00,811 INFO [background-preinit] o.h.v.i.u.Version [Version.java:21] HV000001: Hibernate Validator 8.0.1.Final
-2023-12-19 23:48:00,860 INFO [restartedMain] i.u.b.BancoApplication [StartupInfoLogger.java:50] Starting BancoApplication using Java 17.0.9 with PID 23616 (C:\Mis Archivos\Codigo\ProgramacionConcurrente\SpringBatch_LuisMiguelUrbez\target\classes started by Luis Miguel Urbez in C:\Mis Archivos\Codigo\ProgramacionConcurrente\SpringBatch_LuisMiguelUrbez)
-2023-12-19 23:48:00,862 INFO [restartedMain] i.u.b.BancoApplication [SpringApplication.java:653] No active profile set, falling back to 1 default profile: "default"
-2023-12-19 23:48:01,167 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:252] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-12-19 23:48:01,167 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:252] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-12-19 23:48:01,932 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:292] Multiple Spring Data modules found, entering strict repository configuration mode
-2023-12-19 23:48:01,932 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:139] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-12-19 23:48:02,061 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:208] Finished Spring Data repository scanning in 122 ms. Found 1 JPA repository interface.
-2023-12-19 23:48:02,071 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:70] Finished Spring Batch infrastructure beans configuration in 4 ms.
-2023-12-19 23:48:02,073 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:84] Bean jobRepository already defined in the application context, skipping the registration of a jobRepository
-2023-12-19 23:48:02,073 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:151] Bean jobExplorer already defined in the application context, skipping the registration of a jobExplorer
-2023-12-19 23:48:02,073 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:200] Bean jobLauncher already defined in the application context, skipping the registration of a jobLauncher
-2023-12-19 23:48:02,073 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:219] Bean jobRegistry already defined in the application context, skipping the registration of a jobRegistry
-2023-12-19 23:48:02,074 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:230] Bean jobRegistryBeanPostProcessor already defined in the application context, skipping the registration of a jobRegistryBeanPostProcessor
-2023-12-19 23:48:02,074 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:243] Bean jobOperator already defined in the application context, skipping the registration of a jobOperator
-2023-12-19 23:48:02,074 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:70] Finished Spring Batch infrastructure beans configuration in 1 ms.
-2023-12-19 23:48:02,416 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:292] Multiple Spring Data modules found, entering strict repository configuration mode
-2023-12-19 23:48:02,418 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:139] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2023-12-19 23:48:02,455 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationExtensionSupport [RepositoryConfigurationExtensionSupport.java:320] Spring Data Redis - Could not safely identify store assignment for repository candidate interface io.uax.banco.repos.UsuarioRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
-2023-12-19 23:48:02,456 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:208] Finished Spring Data repository scanning in 27 ms. Found 0 Redis repository interfaces.
-2023-12-19 23:48:02,664 INFO [restartedMain] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [LogAccessor.java:292] No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
-2023-12-19 23:48:02,672 INFO [restartedMain] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [LogAccessor.java:292] No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
-2023-12-19 23:48:02,902 WARN [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [PostProcessorRegistrationDelegate.java:437] Bean 'jobRegistry' of type [org.springframework.batch.core.configuration.support.MapJobRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [jobRegistryBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
-2023-12-19 23:48:03,208 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:108] Tomcat initialized with port 8080 (http)
-2023-12-19 23:48:03,215 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-8080"]
-2023-12-19 23:48:03,216 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
-2023-12-19 23:48:03,217 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/10.1.16]
-2023-12-19 23:48:03,272 INFO [restartedMain] o.a.c.c.C.[.[.[/] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
-2023-12-19 23:48:03,273 INFO [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext [ServletWebServerApplicationContext.java:296] Root WebApplicationContext: initialization completed in 2106 ms
-2023-12-19 23:48:03,303 INFO [restartedMain] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
-2023-12-19 23:48:04,875 INFO [restartedMain] c.z.h.p.HikariPool [HikariPool.java:565] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@39e60864
-2023-12-19 23:48:04,877 INFO [restartedMain] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
-2023-12-19 23:48:04,894 INFO [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration [H2ConsoleAutoConfiguration.java:88] H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dpg-clu4ak5a73kc7399gb80-a.frankfurt-postgres.render.com/springbatchpostgres'
-2023-12-19 23:48:05,016 INFO [restartedMain] o.h.j.i.u.LogHelper [LogHelper.java:31] HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-12-19 23:48:05,080 INFO [restartedMain] o.h.Version [Version.java:44] HHH000412: Hibernate ORM core version 6.3.1.Final
-2023-12-19 23:48:05,120 INFO [restartedMain] o.h.c.i.RegionFactoryInitiator [RegionFactoryInitiator.java:50] HHH000026: Second-level cache disabled
-2023-12-19 23:48:05,341 INFO [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo [SpringPersistenceUnitInfo.java:87] No LoadTimeWeaver setup: ignoring JPA class transformer
-2023-12-19 23:48:06,437 INFO [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator [JtaPlatformInitiator.java:58] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2023-12-19 23:48:07,109 INFO [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean [AbstractEntityManagerFactoryBean.java:437] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-12-19 23:48:07,159 INFO [restartedMain] o.s.b.c.r.s.JobRepositoryFactoryBean [JobRepositoryFactoryBean.java:274] No database type set, using meta data indicating: POSTGRES
-2023-12-19 23:48:07,470 INFO [restartedMain] o.s.b.c.c.a.BatchObservabilityBeanPostProcessor [BatchObservabilityBeanPostProcessor.java:62] No Micrometer observation registry found, defaulting to ObservationRegistry.NOOP
-2023-12-19 23:48:07,474 INFO [restartedMain] o.s.b.c.c.a.BatchObservabilityBeanPostProcessor [BatchObservabilityBeanPostProcessor.java:62] No Micrometer observation registry found, defaulting to ObservationRegistry.NOOP
-2023-12-19 23:48:08,458 INFO [restartedMain] o.q.i.StdSchedulerFactory [StdSchedulerFactory.java:1220] Using default implementation for ThreadExecutor
-2023-12-19 23:48:08,482 INFO [restartedMain] o.q.c.SchedulerSignalerImpl [SchedulerSignalerImpl.java:61] Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
-2023-12-19 23:48:08,483 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:229] Quartz Scheduler v.2.3.2 created.
-2023-12-19 23:48:08,484 INFO [restartedMain] o.q.s.RAMJobStore [RAMJobStore.java:155] RAMJobStore initialized.
-2023-12-19 23:48:08,485 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:294] Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+2023-12-20 11:56:11,750 INFO [restartedMain] i.u.b.BancoApplication [StartupInfoLogger.java:50] Starting BancoApplication using Java 17.0.9 with PID 17416 (C:\Mis Archivos\Codigo\ProgramacionConcurrente\SpringBatch_LuisMiguelUrbez\target\classes started by Luis Miguel Urbez in C:\Mis Archivos\Codigo\ProgramacionConcurrente\SpringBatch_LuisMiguelUrbez)
+2023-12-20 11:56:11,751 INFO [restartedMain] i.u.b.BancoApplication [SpringApplication.java:653] No active profile set, falling back to 1 default profile: "default"
+2023-12-20 11:56:12,091 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:292] Multiple Spring Data modules found, entering strict repository configuration mode
+2023-12-20 11:56:12,091 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:139] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-12-20 11:56:12,097 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:208] Finished Spring Data repository scanning in 5 ms. Found 1 JPA repository interface.
+2023-12-20 11:56:12,098 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:70] Finished Spring Batch infrastructure beans configuration in 0 ms.
+2023-12-20 11:56:12,098 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:84] Bean jobRepository already defined in the application context, skipping the registration of a jobRepository
+2023-12-20 11:56:12,098 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:151] Bean jobExplorer already defined in the application context, skipping the registration of a jobExplorer
+2023-12-20 11:56:12,098 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:200] Bean jobLauncher already defined in the application context, skipping the registration of a jobLauncher
+2023-12-20 11:56:12,099 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:219] Bean jobRegistry already defined in the application context, skipping the registration of a jobRegistry
+2023-12-20 11:56:12,099 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:230] Bean jobRegistryBeanPostProcessor already defined in the application context, skipping the registration of a jobRegistryBeanPostProcessor
+2023-12-20 11:56:12,099 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:243] Bean jobOperator already defined in the application context, skipping the registration of a jobOperator
+2023-12-20 11:56:12,099 INFO [restartedMain] o.s.b.c.c.a.BatchRegistrar [BatchRegistrar.java:70] Finished Spring Batch infrastructure beans configuration in 0 ms.
+2023-12-20 11:56:12,180 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:292] Multiple Spring Data modules found, entering strict repository configuration mode
+2023-12-20 11:56:12,181 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:139] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2023-12-20 11:56:12,185 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationExtensionSupport [RepositoryConfigurationExtensionSupport.java:320] Spring Data Redis - Could not safely identify store assignment for repository candidate interface io.uax.banco.repos.UsuarioRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2023-12-20 11:56:12,186 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:208] Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2023-12-20 11:56:12,225 INFO [restartedMain] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [LogAccessor.java:292] No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2023-12-20 11:56:12,225 INFO [restartedMain] o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor [LogAccessor.java:292] No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2023-12-20 11:56:12,263 WARN [restartedMain] o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [PostProcessorRegistrationDelegate.java:437] Bean 'jobRegistry' of type [org.springframework.batch.core.configuration.support.MapJobRegistry] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [jobRegistryBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+2023-12-20 11:56:12,313 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:108] Tomcat initialized with port 8080 (http)
+2023-12-20 11:56:12,313 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-8080"]
+2023-12-20 11:56:12,315 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
+2023-12-20 11:56:12,315 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/10.1.16]
+2023-12-20 11:56:12,338 INFO [restartedMain] o.a.c.c.C.[.[.[/] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
+2023-12-20 11:56:12,338 INFO [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext [ServletWebServerApplicationContext.java:296] Root WebApplicationContext: initialization completed in 581 ms
+2023-12-20 11:56:12,351 INFO [restartedMain] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-2 - Starting...
+2023-12-20 11:56:13,444 INFO [restartedMain] c.z.h.p.HikariPool [HikariPool.java:565] HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@594d1121
+2023-12-20 11:56:13,445 INFO [restartedMain] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-2 - Start completed.
+2023-12-20 11:56:13,447 INFO [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration [H2ConsoleAutoConfiguration.java:88] H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://dpg-clu4ak5a73kc7399gb80-a.frankfurt-postgres.render.com/springbatchpostgres'
+2023-12-20 11:56:13,491 INFO [restartedMain] o.h.j.i.u.LogHelper [LogHelper.java:31] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-12-20 11:56:13,494 INFO [restartedMain] o.h.c.i.RegionFactoryInitiator [RegionFactoryInitiator.java:50] HHH000026: Second-level cache disabled
+2023-12-20 11:56:13,498 INFO [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo [SpringPersistenceUnitInfo.java:87] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-12-20 11:56:13,720 INFO [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator [JtaPlatformInitiator.java:58] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2023-12-20 11:56:13,873 INFO [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean [AbstractEntityManagerFactoryBean.java:437] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-12-20 11:56:13,912 INFO [restartedMain] o.s.b.c.r.s.JobRepositoryFactoryBean [JobRepositoryFactoryBean.java:274] No database type set, using meta data indicating: POSTGRES
+2023-12-20 11:56:14,023 INFO [restartedMain] o.s.b.c.c.a.BatchObservabilityBeanPostProcessor [BatchObservabilityBeanPostProcessor.java:62] No Micrometer observation registry found, defaulting to ObservationRegistry.NOOP
+2023-12-20 11:56:14,024 INFO [restartedMain] o.s.b.c.c.a.BatchObservabilityBeanPostProcessor [BatchObservabilityBeanPostProcessor.java:62] No Micrometer observation registry found, defaulting to ObservationRegistry.NOOP
+2023-12-20 11:56:14,218 INFO [restartedMain] o.q.i.StdSchedulerFactory [StdSchedulerFactory.java:1220] Using default implementation for ThreadExecutor
+2023-12-20 11:56:14,219 INFO [restartedMain] o.q.c.SchedulerSignalerImpl [SchedulerSignalerImpl.java:61] Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2023-12-20 11:56:14,219 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:229] Quartz Scheduler v.2.3.2 created.
+2023-12-20 11:56:14,220 INFO [restartedMain] o.q.s.RAMJobStore [RAMJobStore.java:155] RAMJobStore initialized.
+2023-12-20 11:56:14,220 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:294] Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
   Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
   NOT STARTED.
   Currently in standby mode.
@@ -52,29 +48,27 @@
   Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
   Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
 
-2023-12-19 23:48:08,485 INFO [restartedMain] o.q.i.StdSchedulerFactory [StdSchedulerFactory.java:1374] Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
-2023-12-19 23:48:08,486 INFO [restartedMain] o.q.i.StdSchedulerFactory [StdSchedulerFactory.java:1378] Quartz scheduler version: 2.3.2
-2023-12-19 23:48:08,486 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:2293] JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@35953f19
-2023-12-19 23:48:08,539 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:59] LiveReload server is running on port 35729
-2023-12-19 23:48:08,659 INFO [restartedMain] o.s.i.e.EventDrivenConsumer [LogAccessor.java:174] Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2023-12-19 23:48:08,659 INFO [restartedMain] o.s.i.c.PublishSubscribeChannel [LogAccessor.java:174] Channel 'application.errorChannel' has 1 subscriber(s).
-2023-12-19 23:48:08,660 INFO [restartedMain] o.s.i.e.EventDrivenConsumer [LogAccessor.java:292] started bean '_org.springframework.integration.errorLogger'
-2023-12-19 23:48:08,660 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-8080"]
-2023-12-19 23:48:08,681 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:221] Tomcat started on port 8080 (http) with context path ''
-2023-12-19 23:48:08,683 INFO [restartedMain] o.s.s.q.SchedulerFactoryBean [SchedulerFactoryBean.java:729] Starting Quartz Scheduler now
-2023-12-19 23:48:08,683 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:547] Scheduler quartzScheduler_$_NON_CLUSTERED started.
-2023-12-19 23:48:08,693 INFO [restartedMain] i.u.b.BancoApplication [StartupInfoLogger.java:56] Started BancoApplication in 8.406 seconds (process running for 9.131)
-2023-12-19 23:48:34,016 INFO [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/] [DirectJDKLog.java:173] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-12-19 23:48:34,016 INFO [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:532] Initializing Servlet 'dispatcherServlet'
-2023-12-19 23:48:34,018 INFO [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:554] Completed initialization in 2 ms
-2023-12-19 23:49:16,559 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:585] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2023-12-19 23:49:16,595 INFO [SpringApplicationShutdownHook] o.s.i.e.EventDrivenConsumer [LogAccessor.java:174] Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
-2023-12-19 23:49:16,595 INFO [SpringApplicationShutdownHook] o.s.i.c.PublishSubscribeChannel [LogAccessor.java:174] Channel 'application.errorChannel' has 0 subscriber(s).
-2023-12-19 23:49:16,597 INFO [SpringApplicationShutdownHook] o.s.i.e.EventDrivenConsumer [LogAccessor.java:292] stopped bean '_org.springframework.integration.errorLogger'
-2023-12-19 23:49:16,598 INFO [SpringApplicationShutdownHook] o.s.s.q.SchedulerFactoryBean [SchedulerFactoryBean.java:847] Shutting down Quartz Scheduler
-2023-12-19 23:49:16,599 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:666] Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
-2023-12-19 23:49:16,599 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:585] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
-2023-12-19 23:49:16,599 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:740] Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
-2023-12-19 23:49:16,612 INFO [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean [AbstractEntityManagerFactoryBean.java:650] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-12-19 23:49:16,619 INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:350] HikariPool-1 - Shutdown initiated...
-2023-12-19 23:49:16,980 INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:352] HikariPool-1 - Shutdown completed.
+2023-12-20 11:56:14,220 INFO [restartedMain] o.q.i.StdSchedulerFactory [StdSchedulerFactory.java:1374] Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2023-12-20 11:56:14,220 INFO [restartedMain] o.q.i.StdSchedulerFactory [StdSchedulerFactory.java:1378] Quartz scheduler version: 2.3.2
+2023-12-20 11:56:14,220 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:2293] JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6fe4f741
+2023-12-20 11:56:14,232 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:59] LiveReload server is running on port 35729
+2023-12-20 11:56:14,265 INFO [restartedMain] o.s.i.e.EventDrivenConsumer [LogAccessor.java:174] Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-12-20 11:56:14,265 INFO [restartedMain] o.s.i.c.PublishSubscribeChannel [LogAccessor.java:174] Channel 'application.errorChannel' has 1 subscriber(s).
+2023-12-20 11:56:14,265 INFO [restartedMain] o.s.i.e.EventDrivenConsumer [LogAccessor.java:292] started bean '_org.springframework.integration.errorLogger'
+2023-12-20 11:56:14,265 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-8080"]
+2023-12-20 11:56:14,277 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:221] Tomcat started on port 8080 (http) with context path ''
+2023-12-20 11:56:14,278 INFO [restartedMain] o.s.s.q.SchedulerFactoryBean [SchedulerFactoryBean.java:729] Starting Quartz Scheduler now
+2023-12-20 11:56:14,279 INFO [restartedMain] o.q.c.QuartzScheduler [QuartzScheduler.java:547] Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2023-12-20 11:56:14,288 INFO [restartedMain] i.u.b.BancoApplication [StartupInfoLogger.java:56] Started BancoApplication in 2.609 seconds (process running for 256.824)
+2023-12-20 11:56:14,294 INFO [restartedMain] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener [ConditionEvaluationDeltaLoggingListener.java:63] Condition evaluation unchanged
+2023-12-20 11:58:02,563 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:585] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2023-12-20 11:58:02,585 INFO [SpringApplicationShutdownHook] o.s.i.e.EventDrivenConsumer [LogAccessor.java:174] Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2023-12-20 11:58:02,586 INFO [SpringApplicationShutdownHook] o.s.i.c.PublishSubscribeChannel [LogAccessor.java:174] Channel 'application.errorChannel' has 0 subscriber(s).
+2023-12-20 11:58:02,586 INFO [SpringApplicationShutdownHook] o.s.i.e.EventDrivenConsumer [LogAccessor.java:292] stopped bean '_org.springframework.integration.errorLogger'
+2023-12-20 11:58:02,587 INFO [SpringApplicationShutdownHook] o.s.s.q.SchedulerFactoryBean [SchedulerFactoryBean.java:847] Shutting down Quartz Scheduler
+2023-12-20 11:58:02,587 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:666] Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2023-12-20 11:58:02,587 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:585] Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2023-12-20 11:58:02,587 INFO [SpringApplicationShutdownHook] o.q.c.QuartzScheduler [QuartzScheduler.java:740] Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2023-12-20 11:58:02,594 INFO [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean [AbstractEntityManagerFactoryBean.java:650] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-20 11:58:02,595 INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:350] HikariPool-2 - Shutdown initiated...
+2023-12-20 11:58:02,999 INFO [SpringApplicationShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:352] HikariPool-2 - Shutdown completed.
