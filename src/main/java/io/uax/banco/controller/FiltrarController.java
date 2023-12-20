@@ -24,15 +24,17 @@ public class FiltrarController {
 
 
     @GetMapping
-    public String filter(@RequestParam("minAmount") Double minAmount,
-                         @RequestParam("maxAmount") Double maxAmount, Model model) {
-        List<Usuario> usuarios = usuarioRepository.findByAmountBetween(minAmount, maxAmount);
+    public String filter(@RequestParam(value = "minAmount", required = false) Double minAmount,
+                         @RequestParam(value = "maxAmount", required = false) Double maxAmount, Model model) {
+        if (minAmount != null && maxAmount != null) {
+            List<Usuario> usuarios = usuarioRepository.findByAmountBetween(minAmount, maxAmount);
 
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        FiltrarTask filtrarTask = new FiltrarTask(usuarios);
-        List<Usuario> sortedUsuarios = forkJoinPool.invoke(filtrarTask);
+            ForkJoinPool forkJoinPool = new ForkJoinPool();
+            FiltrarTask filtrarTask = new FiltrarTask(usuarios);
+            List<Usuario> sortedUsuarios = forkJoinPool.invoke(filtrarTask);
 
-        model.addAttribute("usuarios", sortedUsuarios);
-        return "filterResult";
+            model.addAttribute("usuarios", sortedUsuarios);
+        }
+        return "filtrar/filtro";
     }
 }

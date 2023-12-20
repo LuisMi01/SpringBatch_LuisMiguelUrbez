@@ -1,29 +1,40 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <title>Filtrar</title>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-<h1>Filtrar Usuarios</h1>
+<div layout:fragment="content">
+    <div class="flex flex-wrap mb-6">
+        <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem;">Filtrar Usuarios</h1>
 
-<form th:action="@{/filtrar}" method="get">
-    <input type="number" name="minAmount" placeholder="Monto mínimo">
-    <input type="number" name="maxAmount" placeholder="Monto máximo">
-    <button type="submit">Filtrar</button>
-</form>
+        <form th:action="@{/filtrar}" method="get" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+            <input type="number" name="minAmount" placeholder="Monto mínimo" style="padding: 0.5rem;">
+            <input type="number" name="maxAmount" placeholder="Monto máximo" style="padding: 0.5rem;">
+            <button type="submit" style="padding: 0.5rem; background-color: #4c4b4b; color: white; border: none;">Filtrar</button>
+        </form>
 
-<div th:if="${usuarios}">
-    <h2>Resultados</h2>
-    <div th:each="usuario : ${usuarios}">
-        <p>AccountId: <span th:text="${usuario.accountId}"></span></p>
-        <p>Amount: <span th:text="${usuario.amount}"></span></p>
-        <!-- Añade aquí más campos según sea necesario -->
+        <div th:if="${usuarios}">
+            <h2 style="margin-bottom: 1rem;">Resultados</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li th:each="usuario : ${usuarios}" style="margin-bottom: 1rem; padding: 1rem; border: 1px solid #4c4b4b;">
+                    <p>AccountId: <span th:text="${usuario.accountId}"></span></p>
+                    <p>Amount: <span th:text="${usuario.amount}"></span></p>
+                    <!-- Añade aquí más campos según sea necesario -->
+                </li>
+            </ul>
+        </div>
+
+        <div th:if="${errorMessage}" style="color: red;">
+            <p th:text="${errorMessage}"></p>
+        </div>
     </div>
 </div>
-
-<div th:if="${errorMessage}">
-    <p th:text="${errorMessage}"></p>
-</div>
-
 </body>
 </html>
