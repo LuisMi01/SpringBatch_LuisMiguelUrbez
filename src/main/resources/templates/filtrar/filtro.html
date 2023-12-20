@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>Filtrar</title>
+    <title>Buscar usuarios | Banco</title>
     <style>
         a {
             text-decoration: none;
@@ -12,11 +12,11 @@
 <body>
 <div layout:fragment="content">
     <div class="flex flex-wrap mb-6">
-        <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem;">Filtrar Usuarios</h1>
+        <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem;">Buscar usuario</h1>
 
-        <form th:action="@{/filtrar}" method="get">
-            <input type="text" name="accountId" placeholder="Buscar por IBAN">
-            <button type="submit">Buscar</button>
+        <form th:action="@{/filtrar}" method="get" style="display: flex; flex-direction: row; justify-content: center">
+            <input type="text" name="accountId" placeholder="Buscar por IBAN" style="border: 2px solid #1D1D1D; border-radius: 6px; font-size: 1.2rem; padding: 0.5rem;">
+            <button type="submit" style="border: 2px solid #1D1D1D; border-radius: 6px; background-color: rgba(0,204,0,0.8); font-size: 1.2rem; padding: 0.5rem;">Buscar</button>
         </form>
 
 
@@ -41,15 +41,19 @@
         </div>*/-->
 
         <div th:if="${usuario}">
-            <h2>Usuario encontrado:</h2>
-            <div class="card" style="background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
-                <div style="display: flex;; margin-bottom: 0.5rem;">
-                    <strong style="padding-right: 0.5rem;">ID cuenta</strong>
-                    <strong style="padding-right: 0.5rem;">Cantidad</strong>
-                </div>
-                <div style="display: flex; margin-bottom: 0.5rem;">
-                    <p style="padding-right: 0.5rem;"><span th:text="${usuario.accountId}"></span></p>
-                    <p style="padding-right: 0.5rem;"><span th:text="${usuario.amount}"></span> €</p>
+            <div style="display: flex; justify-content: center; align-items: center; height: 60vh;">
+                <div style="margin-top:1rem; width: fit-content; background-color: #393939; color: white; padding: 1rem; border-radius: 20px">
+                    <h2 style="text-align: center;">IBAN</h2>
+                    <h3 style="text-align: center;"><span th:text="${usuario.accountId}"></span></h3>
+
+                    <h2 style="text-align: center;">Cantidad</h2>
+                    <h3 style="text-align: center;"><span th:text="${usuario.amount}"></span> €</h3>
+
+                    <h2 style="text-align: center;">Tipo de transacción</h2>
+                    <h3 style="text-align: center"><span th:text="${usuario.transactionType}"></span> </h3>
+
+                    <h2 style="text-align: center;">Fecha de la última transacción</h2>
+                    <h3 style="text-align: center"><span th:text="${usuario.transactionDate}"></span> </h3>
                 </div>
             </div>
         </div>

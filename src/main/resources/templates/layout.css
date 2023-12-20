@@ -1,0 +1,106 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+a {
+    text-decoration: none;
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+main {
+    margin-top: 115px;
+}
+.Btn {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    position: relative;
+    /* overflow: hidden; */
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.svgContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    letter-spacing: 0.8px;
+    border-radius: 10px;
+    transition: all .3s;
+    border: 1px solid rgba(156, 156, 156, 0.466);
+}
+
+.BG {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #181818;
+    z-index: -1;
+    border-radius: 10px;
+    pointer-events: none;
+    transition: all .3s;
+}
+
+.Btn:hover .BG {
+    transform: rotate(35deg);
+    transform-origin: bottom;
+}
+
+.Btn:hover .svgContainer {
+    background-color: rgba(156, 156, 156, 0.466);
+    backdrop-filter: blur(4px);
+}
+
+.button {
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 0px;
+    cursor: pointer;
+    outline: 0px;
+    padding: 0 2px;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.backdrop {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: rgb(36, 33, 228);
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    border-radius: 15px;
+    transform: translateX(-50%) translateY(-50%);
+    transition: all ease-in-out 0.5s;
+}
+
+.button:hover + .backdrop {
+    top: 48%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transform: rotate(15deg) translateX(-50%) translateY(-50%);
+}
+
+.button:active,.button:active +.backdrop {
+    box-shadow: none;
+}
