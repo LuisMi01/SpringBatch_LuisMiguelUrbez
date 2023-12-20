@@ -1,0 +1,24 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.07em
+}
+a {
+    text-decoration: none;
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+main {
+    margin-top: 115px;
+}
+aside {
+    background-color: #1D1D1D;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+}
+

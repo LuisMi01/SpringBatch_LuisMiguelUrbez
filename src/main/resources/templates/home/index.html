@@ -8,6 +8,13 @@
 <div layout:fragment="content" style="position: fixed; left: 50%; transform: translateX(-50%);">
     <h1 class="text-center" style="text-align: center">Bienvenido al banco de Luis Miguel Urbez</h1>
     <p class="text-center" style="text-align: center">Aquí puedes añadir usuarios, realizar transacciones y mucho más.</p>
+    <h2 style="margin: 1.5rem; border-bottom: 2px solid #4c4b4b">Utilizacion de la pagina:</h2>
+    <p style="text-align: justify; ">Esta pagina utiliza en su backend el conocido framework de <strong>Spring Batch.</strong> Este framework se va a encargar de mostrar los datos de un CSV importado
+    e insertarlos en la base de datos. Estos datos no van a poder ser editados, es decir, tienen que ser unos datos especificos, ya que las limitaciones de codigo
+    no dejan tener varios CSVs con diferentes tipos de datos. <br><br>Sin embargo, para que el usuario pueda comprobar el funcionamiento de Spring Batch
+    se va a proprcionar una pagina la cual va a descargar un CSV usable. Esta pagina se encuentra disponible en todo momento en la
+    esquina superior derecha con el boton verde de CSV. <br><br>Tambien se podra acceder a ella desde la pagina de añadir usuarios, la cual se usa para esto mismo,
+    importar usuarios desde un CSV, que sean leidos, procesados y escritos en la base de datos.</p>
 </div>
 </body>
 </html>
