@@ -1,6 +1,8 @@
 package io.uax.banco.controller;
 
+import io.uax.banco.domain.Usuario;
 import io.uax.banco.model.UsuarioDTO;
+import io.uax.banco.repos.UsuarioRepository;
 import io.uax.banco.service.UsuarioService;
 import io.uax.banco.util.WebUtils;
 import jakarta.validation.Valid;
@@ -19,12 +21,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Comparator;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public UsuarioController(final UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
@@ -33,24 +41,40 @@ public class UsuarioController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("usuarios", usuarioService.findAll());
+        listUsuarios(model);
         return "usuario/list";
     }
 
-    /*@Autowired
-    JobLauncher jobLauncher;
+    public String listUsuarios(Model model) {
+        List<Usuario> usuarios = usuarioRepository.findAll();
 
-    @Autowired
-    Job processJob;
+        //total de dinero sumado
+        double totalAmount = usuarios.stream()
+                .mapToDouble(Usuario::getAmount)
+                .sum();
 
-    public String handle() throws Exception {
+        //usuario que más ha gastado
+        Usuario maxSpender = usuarios.stream()
+                .filter(usuario -> usuario.getTransactionType().equals("Retiro"))
+                .max(Comparator.comparing(Usuario::getAmount))
+                .orElse(null);
 
-        JobParameters jobParameters = new JobParametersBuilder()
-                .addLong("time", System.currentTimeMillis()).toJobParameters();
+        //usuario que más ha ingresado
+        Usuario maxDepositor = usuarios.stream()
+                .filter(usuario -> usuario.getTransactionType().equals("Ingreso"))
+                .max(Comparator.comparing(Usuario::getAmount))
+                .orElse(null);
 
-        jobLauncher.run(processJob, jobParameters);
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("totalAmount", totalAmount);
+        model.addAttribute("maxSpender", maxSpender != null ? maxSpender.getAccountId() : "N/A");
+        model.addAttribute("maxSpenderAmount", maxSpender != null ? maxSpender.getAmount() : 0);
+        model.addAttribute("maxDepositor", maxDepositor != null ? maxDepositor.getAccountId() : "N/A");
+        model.addAttribute("maxDepositorAmount", maxDepositor != null ? maxDepositor.getAmount() : 0);
 
-        return "El job ha sido invocado";
-    }*/
+
+        return "usuario/list";
+    }
 
     @GetMapping("/add")
     public String add(@ModelAttribute("usuario") final UsuarioDTO usuarioDTO) {
