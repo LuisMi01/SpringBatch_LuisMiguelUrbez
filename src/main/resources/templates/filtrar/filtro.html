@@ -1,17 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Resultado de la búsqueda</title>
+    <title>Filtrar</title>
 </head>
 <body>
-<h1>Resultado de la búsqueda</h1>
-<div th:if="${usuario}">
-    <p>AccountId: <span th:text="${usuario.accountId}"></span></p>
-    <p>Amount: <span th:text="${usuario.amount}"></span></p>
-    <!-- Añade aquí más campos según sea necesario -->
+<h1>Filtrar Usuarios</h1>
+
+<form th:action="@{/filtrar}" method="get">
+    <input type="number" name="minAmount" placeholder="Monto mínimo">
+    <input type="number" name="maxAmount" placeholder="Monto máximo">
+    <button type="submit">Filtrar</button>
+</form>
+
+<div th:if="${usuarios}">
+    <h2>Resultados</h2>
+    <div th:each="usuario : ${usuarios}">
+        <p>AccountId: <span th:text="${usuario.accountId}"></span></p>
+        <p>Amount: <span th:text="${usuario.amount}"></span></p>
+        <!-- Añade aquí más campos según sea necesario -->
+    </div>
 </div>
+
 <div th:if="${errorMessage}">
     <p th:text="${errorMessage}"></p>
 </div>
+
 </body>
 </html>
