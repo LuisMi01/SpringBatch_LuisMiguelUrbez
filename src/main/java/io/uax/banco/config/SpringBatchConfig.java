@@ -16,7 +16,6 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 
-import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
@@ -24,12 +23,10 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
@@ -62,9 +59,9 @@ public class SpringBatchConfig {
 
     @Bean
     @StepScope
-    public FlatFileItemReader<Usuario> reader() {
-        FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
-        reader.setResource(new FileSystemResource("src/main/resources/Banco.csv"));
+    public FlatFileItemReader<Usuario> reader(@Value("#{jobParameters['fileName']}") String fileName) {
+        FlatFileItemReader<Usuario> reader = new FlatFileItemReader<>();
+        reader.setResource(new FileSystemResource("src/main/resources/" + fileName));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});
@@ -108,19 +105,20 @@ public class SpringBatchConfig {
     }
 
     @Bean
-    public Step step1() {
+    public Step step1(@Value("#{jobParameters['fileName']}") String fileName) {
         return new StepBuilder("csv-step", jobRepository)
                 .<Usuario, Usuario>chunk(10, transactionManager)
-                .reader(reader())
+                .reader(reader(fileName))
                 .processor(processor())
                 .writer(writer())
                 .taskExecutor(taskExecutor())
                 .build();
     }
+
     @Bean
-    public Job job() {
+    public Job job(@Value("#{jobParameters['fileName']}") String fileName) {
         return new JobBuilder("Usuario", jobRepository)
-                .start(step1())
+                .start(step1(fileName))
                 .build();
     }
 
