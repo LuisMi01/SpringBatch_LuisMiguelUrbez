@@ -1,10 +1,20 @@
 package io.uax.banco.service;
 
+import io.uax.banco.controller.LogController;
 import io.uax.banco.domain.Usuario;
 import io.uax.banco.model.UsuarioDTO;
 import io.uax.banco.repos.UsuarioRepository;
 import io.uax.banco.util.NotFoundException;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +26,25 @@ public class UsuarioService {
 
     public UsuarioService(final UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+    }
+
+    @Autowired
+    private LogController logController;
+    @Autowired
+    private JobLauncher jobLauncher;
+
+    @Autowired
+    private Job importUserJob;
+
+    public void importarUsuarios() {
+        try {
+            JobParameters parameters = new JobParametersBuilder()
+                    .addString("JobID", String.valueOf(System.currentTimeMillis()))
+                    .toJobParameters();
+            jobLauncher.run(importUserJob, parameters);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<UsuarioDTO> findAll() {
