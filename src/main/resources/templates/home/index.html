@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Banco | Luis Miguel Urbez</title>
+</head>
+<body>
+<div layout:fragment="content" style="position: fixed; left: 50%; transform: translateX(-50%);">
+    <h1 class="text-center" style="text-align: center">Bienvenido al banco de Luis Miguel Urbez</h1>
+    <p class="text-center" style="text-align: center">Aquí puedes añadir usuarios, realizar transacciones y mucho más.</p>
+    <h2 style="margin: 1.5rem; border-bottom: 2px solid #4c4b4b">Información de la web</h2>
+
+    <details style="background-color: #393939; color: white; padding: 1rem; border-radius: 10px; border: 2px solid rgba(0,204,0,0.8); margin: 0.5rem;">
+        <summary style="font-weight: bold; cursor: pointer;">Utilizacion de la pagina</summary>
+        <p style="text-align: justify; ">Esta pagina utiliza en su backend el conocido framework de <strong>Spring Batch.</strong> Este framework se va a encargar de mostrar los datos de un CSV importado
+            e insertarlos en la base de datos. Estos datos no van a poder ser editados, es decir, tienen que ser unos datos especificos, ya que las limitaciones de codigo
+            no dejan tener varios CSVs con diferentes tipos de datos. <br><br>Sin embargo, para que el usuario pueda comprobar el funcionamiento de Spring Batch
+            se va a proprcionar una pagina la cual va a descargar un CSV usable. Esta pagina se encuentra disponible en todo momento en la
+            esquina superior derecha con el boton verde de CSV. <br><br>Tambien se podra acceder a ella desde la pagina de añadir usuarios, la cual se usa para esto mismo,
+            importar usuarios desde un CSV, que sean leidos, procesados y escritos en la base de datos.</p>
+    </details>
+
+    <details style="background-color: #393939; color: white; padding: 1rem; border-radius: 10px; border: 2px solid rgba(0,204,0,0.8); margin: 0.5rem;">
+        <summary style="font-weight: bold; cursor: pointer;">Base de Datos</summary>
+        <p style="text-align: justify; color: white">
+            La base de datos de este pryecto al igual que la web, pertenece a un servido, por lo cual es accesible desde cualquier maquina sin necesidad de transportar la db junto con el proyecto.
+            Sin embargo, para comprobar el funcionamiento de la misma, al igual que los datos importados en ella, requiere de ciertos pasos a seguir.
+                <br><br>
+           <strong>Servidor de la base</strong><br>
+            - Alojado en <a href="https://www.render.com" target="_blank">Render</a>
+            - ES una base de datos en PostgresSQL, con 1Gb de almacenamiento y una potencia de computo limitada<br>
+            - La pagina con todos los datos proporcionados por el servido se encuentra <a href="https://dashboard.render.com/d/dpg-clu4ak5a73kc7399gb80-a" target="_blank">aqui</a>
+                <br><br>
+            <strong>Si quieres indagar más aun en la db:</strong><br>
+            - Puedes conectarte de forma remota usando la terminal de tu ordenador.<br>
+            - Para conectarte necesitaras una cadena tal como esta: psql  -h  dpg-clu4ak5a73kc7399gb80-a.frankfurt-postgres.render.com -U springbatchpostgres_user -d springbatchpostgres<br>
+            - Esta cadena proporciona el host, usuario y base de datos a la que conectarse.<br>
+            - La contraseña para entrar es la siguiente: J7oXGliqI4QbmDyyXwT7jA8zlBhi8Tx8<br>
+            - Una vez introducida la contraseña, puedes usar comandos SQL para saber mas sobre la base de datos.<br>
+        </p>
+    </details>
+
+    <details style="background-color: #393939; color: white; padding: 1rem; border-radius: 10px; border: 2px solid rgba(0,204,0,0.8); margin: 0.5rem;">
+        <summary style="font-weight: bold; cursor: pointer;">CSV y Servidor</summary>
+        <p>
+            Aunque ya ha sido explicado en la primera pestaña, el CSV proporcionado <a href="https://www.mockaroo.com/976cfa30" target="_blank">aqui</a>, pueden ser cambiados los valores.
+            Sin embargo, el cambio de estos va a alterar al funcionamiento de Spring Batch, pueden ser cambiados los valores numericos, fechas, etc. Todo puede ser cambiado mientras no se modifique
+            la estructura de los datos, ni el nombre de los mismos (ya que son usados en las columnas de la base de datos), ni el tipo de datos (strings, doubles, etc).<br><br>
+            El servidor que aloja a la web (el mismo que aloja a la base de datos) es <a href="https://dashboard.render.com/web/srv-clvht6da73kc73bpvsa0" target="_blank">Render</a>.
+            Este servidor es gratuito, por lo que tiene ciertas limitaciones. Sin embargo es de los pocos que admiten tanto backend como frontend a la vez, por lo que es el que se ha elegido.
+            <br><br>
+            El link anterior propociona la "dashboard" del servidor, donde se pueden ver los datos de la web, capacidad de procesamiento, etc. Tambien se puede acceder a la seccion más importante de todas,
+            los "Deployments". Estos son los que siguen un registro de como ha sido creada la web (a parte de Github), y se puede acceder a ellos para ver los logs de la web, los errores, etc.
+            Estos deployments tienen su propia consola la cual enseña como esta creandoase y funcionando la web en tiempo real.<strong>Tambien se puede ver como es la introduccion de los datos
+            de un CSV, ya que Spring Batch muestra como esta siendo el proceso de la impirtacion de datos del CSV a la db.</strong>
+
+            <br><br>
+
+        </p>
+    </details>
+
+
+</div>
+</body>
+</html>

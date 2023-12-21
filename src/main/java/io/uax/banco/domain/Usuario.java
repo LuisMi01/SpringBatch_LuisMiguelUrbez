@@ -1,9 +1,11 @@
 package io.uax.banco.domain;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -11,10 +13,12 @@ import lombok.Setter;
 @Table(name = "usuarios")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @Id
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, name = "id")
     @SequenceGenerator(
             name = "primary_sequence",
             sequenceName = "primary_sequence",
@@ -27,16 +31,16 @@ public class Usuario {
     )
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "account_id")
     private String accountId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "transaction_type")
     private String transactionType;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "amount")
     private Double amount;
 
-    @Column
-    private LocalDate transactionDate;
+    @Column(nullable = false, name = "transaction_date")
+    private String transactionDate;
 
 }

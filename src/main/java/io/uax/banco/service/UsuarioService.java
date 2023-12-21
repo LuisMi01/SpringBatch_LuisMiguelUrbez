@@ -4,7 +4,11 @@ import io.uax.banco.domain.Usuario;
 import io.uax.banco.model.UsuarioDTO;
 import io.uax.banco.repos.UsuarioRepository;
 import io.uax.banco.util.NotFoundException;
+
 import java.util.List;
+
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,7 @@ public class UsuarioService {
     public UsuarioService(final UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
+
 
     public List<UsuarioDTO> findAll() {
         final List<Usuario> usuarios = usuarioRepository.findAll(Sort.by("id"));
