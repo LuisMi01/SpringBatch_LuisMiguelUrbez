@@ -23,7 +23,6 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -59,9 +58,9 @@ public class SpringBatchConfig {
 
     @Bean
     @StepScope
-    public FlatFileItemReader<Usuario> reader(@Value("#{jobParameters['fileName']}") String fileName) {
-        FlatFileItemReader<Usuario> reader = new FlatFileItemReader<>();
-        reader.setResource(new FileSystemResource("src/main/resources/" + fileName));
+    public FlatFileItemReader<Usuario> reader() {
+        FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
+        reader.setResource(new FileSystemResource("src/main/resources/Banco.csv"));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});
@@ -105,10 +104,10 @@ public class SpringBatchConfig {
     }
 
     @Bean
-    public Step step1(@Value("#{jobParameters['fileName']}") String fileName) {
+    public Step step1() {
         return new StepBuilder("csv-step", jobRepository)
                 .<Usuario, Usuario>chunk(10, transactionManager)
-                .reader(reader(fileName))
+                .reader(reader())
                 .processor(processor())
                 .writer(writer())
                 .taskExecutor(taskExecutor())
@@ -116,9 +115,9 @@ public class SpringBatchConfig {
     }
 
     @Bean
-    public Job job(@Value("#{jobParameters['fileName']}") String fileName) {
+    public Job job() {
         return new JobBuilder("Usuario", jobRepository)
-                .start(step1(fileName))
+                .start(step1())
                 .build();
     }
 
