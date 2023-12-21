@@ -24,6 +24,6 @@ public class UsuarioDTO {
     @NotNull
     private Double amount;
 
-    private LocalDate transactionDate;
+    private String transactionDate;
 
 }
