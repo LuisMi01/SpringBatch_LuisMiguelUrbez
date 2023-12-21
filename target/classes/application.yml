@@ -24,13 +24,14 @@ spring:
           new_generator_mappings: true
     show-sql: true
   mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
     format:
       date: yyyy-MM-dd
       date-time: yyyy-MM-dd'T'HH:mm:ss
       time: HH:mm:ss
 springdoc:
   pathsToMatch: /api/**
-
 
 
 
