@@ -16,6 +16,7 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 
+import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.data.RepositoryItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
@@ -26,6 +27,7 @@ import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
@@ -41,7 +43,7 @@ public class SpringBatchConfig {
     private UsuarioRepository usuarioRepository;
 
 
-    /*@Bean
+    @Bean
     public ItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
         reader.setResource(new ClassPathResource("Banco.csv"));
@@ -54,9 +56,9 @@ public class SpringBatchConfig {
             }});
         }});
         return reader;
-    }*/
+    }
 
-    @Bean
+    /*@Bean
     @StepScope
     public FlatFileItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
@@ -70,7 +72,7 @@ public class SpringBatchConfig {
             }});
         }});
         return reader;
-    }
+    }*/
 
 
     private LineMapper<Usuario> lineMapper() {
