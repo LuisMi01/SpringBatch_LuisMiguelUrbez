@@ -31,6 +31,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Configuration
 @EnableBatchProcessing
@@ -47,6 +49,7 @@ public class SpringBatchConfig {
     public FlatFileItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
         reader.setResource(new FileSystemResource("src/main/resources/Banco.csv"));
+
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});

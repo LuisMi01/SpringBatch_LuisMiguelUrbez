@@ -36,6 +36,7 @@ public class JobController {
         return "import/jobs";
     }
 
+    /*
     @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         String uploadedFileName = file.getOriginalFilename();
@@ -49,6 +50,32 @@ public class JobController {
             jobLauncher.run(job, jobParameters);
 
             //Files.delete(path);
+        } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException |
+                 JobParametersInvalidException | IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/importCustomers";
+    }*/
+
+    @PostMapping("/upload")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        String uploadedFileName = file.getOriginalFilename();
+        try {
+            // Save the file in a temporary location
+            Path tempPath = Paths.get(System.getProperty("java.io.tmpdir"), uploadedFileName);
+            Files.write(tempPath, file.getBytes());
+
+            // Move or copy the file to the resources folder
+            Path resourcesPath = Paths.get("src/main/resources", uploadedFileName);
+            Files.copy(tempPath, resourcesPath);
+
+            JobParameters jobParameters = new JobParametersBuilder()
+                    .addString("fileName", uploadedFileName)
+                    .addLong("startAt", System.currentTimeMillis()).toJobParameters();
+            jobLauncher.run(job, jobParameters);
+
+            // Delete the temporary file
+            //Files.delete(tempPath);
         } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException |
                  JobParametersInvalidException | IOException e) {
             e.printStackTrace();
