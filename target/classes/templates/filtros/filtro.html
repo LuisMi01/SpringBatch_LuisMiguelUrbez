@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <title>Filtrar usuarios | Banco</title>
+  <style>
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div layout:fragment="content">
+  <div>
+    <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem; ">Filtrar usuarios</h1>
+    <div style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; ">
+      <button id="filter-gasto" onclick="applyFilter('gasto')">Filtrar por gasto</button>
+      <!-- Agrega más botones de filtro según sea necesario -->
+    </div>
+  </div>
+
+
+
+    <div th:if="${usuarios.empty}" style="text-align: center; font-weight: bold">No hay usuarios para mostrar.</div>
+    <div th:if="${!usuarios.empty}" class="overflow-x-auto">
+      <div th:each="usuario : ${usuarios}" class="card" style="width: max-content; background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
+
+        <div style="display: flex; flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;"><!-- Iban -->
+          <strong style="padding-right: 0.5rem;">ID cuenta</strong>
+          <p style="padding-right: 0.5rem;">[[${usuario.accountId}]]</p>
+        </div>
+
+        <div style="margin-left:0.5rem;display: flex;flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;"><!-- Tipo de Transaccion -->
+          <strong style="padding-right: 0.5rem;">Transacción</strong>
+          <p style="padding-right: 0.5rem;">[[${usuario.transactionType}]]</p>
+        </div>
+
+        <div style="margin-left:0.5rem;display: flex;flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;"><!-- Cantidad -->
+          <strong style="padding-right: 0.5rem;">Cantidad</strong>
+          <p style="padding-right: 0.5rem;">[[${usuario.amount}]] €</p>
+        </div>
+
+        <div style="margin-left:0.5rem;display: flex; flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;"><!-- Fecha Transaccion -->
+          <strong style="padding-right: 0.5rem;">Fecha</strong>
+          <p style="padding-right: 0.5rem;">[[${usuario.transactionDate}]]</p>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>
