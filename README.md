@@ -1,4 +1,6 @@
-## Toda la documentacion de este ejercicio se encuentra en el PDF 
+## Toda la documentacion de este ejercicio se encuentra en el PDF y en el HTML principal
+
+### Desgraciadamente el batch no siempre funciona correctamente en el server de Render, para comprobar su funcionamiento es mejor usar localhost
 
 # Paginas de interes
 **Deploy en el servidor**
