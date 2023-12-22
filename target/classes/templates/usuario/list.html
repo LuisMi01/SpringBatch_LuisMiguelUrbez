@@ -13,16 +13,13 @@
 <div layout:fragment="content">
     <div>
         <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem; ">Lista de usuarios</h1>
-        <div style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; ">
-            <a th:href="@{/usuarios/add}" style="text-decoration: none; color: white">Crear un único usuario</a>
-        </div>
     </div>
 
     <div>
 
-    <div th:if="${usuarios.empty}" style="text-align: center; font-weight: bold">No hay usuarios para mostrar.</div>
+    <div th:if="${usuarios.empty}" style="text-align: center; font-weight: bold">No hay usuarios para mostrar.<br>Puede añadir usuarios desde la pagina de "Añadir nuevos usuarios"</div>
     <div th:if="${!usuarios.empty}" class="overflow-x-auto">
-        <div th:each="usuario : ${usuarios}" class="card" style="width: 60%; display: flex; flex-direction: row; background-color: #393939; color: white; padding: 1rem;  border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
+        <div th:each="usuario : ${usuarios}" class="card" style="width: 58%; display: flex; flex-direction: row; background-color: #393939; color: white; padding: 1rem;  border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
 
             <div style="display: flex; flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;"><!-- Iban -->
                 <strong style="padding-right: 0.5rem;">ID cuenta</strong>
@@ -45,7 +42,6 @@
             </div>
 
             <div class="actions" style="width: max-content;margin-left:0.5rem;margin-top: 1rem; display: flex; flex-direction: row; gap: 0.7rem">
-                <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" style="text-align: center; padding: 0.5rem; font-weight: bold; background-color: #6565fa; color: white;border-radius: 6px; border: 2px solid rgba(0,204,0,0.8); transition: background-color 0.3s ease;">Editar</a>
                 <form th:action="@{/usuarios/delete/{id}(id=${usuario.id})}"
                       th:data-confirm-message="'¿Estás seguro de que quieres eliminar este usuario?'" method="post">
                     <button type="submit" style="text-align: center; padding: 0.5rem; font-weight: bold; background-color: #f42046; color: white;border-radius: 6px; border: 2px solid rgba(95,100,95,0.8); transition: background-color 0.3s ease;">Eliminar</button>
@@ -53,14 +49,14 @@
             </div>
         </div>
     </div>
-    <div class="summary-card" style="position: fixed; margin: 0.5rem; top: 14rem;  background-color: #393939; color: white; padding: 0.5rem; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; right: 0;">
-        <h2 style="border-bottom: 2px solid #535252">RESUMEN DEL BANCO</h2>
-        <h3>Total de dinero:</h3>
-        <p> [[${totalAmount}]] €</p>
-        <h3>Usuario que más ha gastado:</h3>
-        <p> [[${maxSpender}]] ([[${maxSpenderAmount}]] €)</p>
-        <h3>Usuario que más ha ingresado:</h3>
-        <p> [[${maxDepositor}]] ([[${maxDepositorAmount}]] €)</p>
+        <div class="summary-card" th:if="${!usuarios.empty}" style="position: fixed; margin: 0.5rem; top: 14rem;  background-color: #393939; color: white; padding: 0.5rem; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; right: 0;">
+            <h2 style="border-bottom: 2px solid #535252">RESUMEN DEL BANCO</h2>
+            <h3>Total de dinero:</h3>
+            <p> [[${totalAmount}]] €</p>
+            <h3>Usuario que más ha gastado:</h3>
+            <p> [[${maxSpender}]] ([[${maxSpenderAmount}]] €)</p>
+            <h3>Usuario que más ha ingresado:</h3>
+            <p> [[${maxDepositor}]] ([[${maxDepositorAmount}]] €)</p>
     </div>
     </div>
 </div>
