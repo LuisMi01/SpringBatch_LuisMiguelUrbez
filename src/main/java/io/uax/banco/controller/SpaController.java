@@ -11,7 +11,7 @@ import java.io.IOException;
 @Controller
 public class SpaController extends PathResourceResolver {
 
-    @RequestMapping(value = "/**/{[path:[^\\.]*}")
+    @RequestMapping(value = "/**/{path:[^\\.]*}")
     public String redirect() {
         return "forward:/";
     }
