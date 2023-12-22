@@ -137,27 +137,15 @@
 
                 </configuration>
             </plugin>
-
-            <!--
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>Dockerfile-maven-plugin</artifactId>
-                <version>1.4.13</version>
-                    <configuration>
-                        <contextDirectory>${project.basedir}</contextDirectory>
-                    </configuration>
-                <executions>
-                    <execution>
-                        <id>default</id>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>push</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 

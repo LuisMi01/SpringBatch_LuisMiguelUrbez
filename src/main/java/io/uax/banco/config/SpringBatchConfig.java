@@ -17,6 +17,8 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 
 import org.springframework.batch.item.data.RepositoryItemWriter;
+import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
+import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
@@ -26,10 +28,14 @@ import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableBatchProcessing
@@ -39,12 +45,14 @@ public class SpringBatchConfig {
     private JobRepository jobRepository;
     private PlatformTransactionManager transactionManager;
     private UsuarioRepository usuarioRepository;
+    private DataSource dataSource;
 
 
-    /*@Bean
-    public ItemReader<Usuario> reader() {
+   /* @Bean
+    @StepScope
+    public FlatFileItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
-        reader.setResource(new ClassPathResource("Banco.csv"));
+        reader.setResource(new FileSystemResource("src/main/resources/Banco.csv"));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});
@@ -60,7 +68,7 @@ public class SpringBatchConfig {
     @StepScope
     public FlatFileItemReader<Usuario> reader() {
         FlatFileItemReader<Usuario> reader = new FlatFileItemReader<Usuario>();
-        reader.setResource(new FileSystemResource("src/main/resources/Banco.csv"));
+        reader.setResource(new ClassPathResource("Banco.csv"));
         reader.setLineMapper(new DefaultLineMapper<Usuario>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(new String[] { "id", "account_id", "amount",  "transaction_type", "transaction_date"});
@@ -96,22 +104,12 @@ public class SpringBatchConfig {
     }
 
     @Bean
-    public RepositoryItemWriter<Usuario> writer() {
-        RepositoryItemWriter<Usuario> writer = new RepositoryItemWriter<>();
-        writer.setRepository(usuarioRepository);
-        writer.setMethodName("save");
+    public JdbcBatchItemWriter<Usuario> writer(DataSource dataSource) {
+        JdbcBatchItemWriter<Usuario> writer = new JdbcBatchItemWriter<>();
+        writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
+        writer.setSql("INSERT INTO usuarios (id, account_id, amount, transaction_type, transaction_date) VALUES (:id, :accountId, :amount, :transactionType, :transactionDate)");
+        writer.setDataSource(dataSource);
         return writer;
-    }
-
-    @Bean
-    public Step step1() {
-        return new StepBuilder("csv-step", jobRepository)
-                .<Usuario, Usuario>chunk(10, transactionManager)
-                .reader(reader())
-                .processor(processor())
-                .writer(writer())
-                .taskExecutor(taskExecutor())
-                .build();
     }
 
     @Bean
@@ -122,9 +120,25 @@ public class SpringBatchConfig {
     }
 
     @Bean
-    public TaskExecutor taskExecutor() {
-        SimpleAsyncTaskExecutor asyncTaskExecutor = new SimpleAsyncTaskExecutor();
-        asyncTaskExecutor.setConcurrencyLimit(100);
-        return asyncTaskExecutor;
+    public Step step1() {
+        return new StepBuilder("csv-step", jobRepository)
+                .<Usuario, Usuario>chunk(100, transactionManager)
+                .reader(reader())
+                .processor(processor())
+                .writer(writer(dataSource))
+                .taskExecutor(taskExecutor())
+                .build();
     }
+
+
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(200);
+        taskExecutor.setMaxPoolSize(200);
+        taskExecutor.afterPropertiesSet();
+        return taskExecutor;
+    }
+
 }
