@@ -18,11 +18,11 @@
         </div>
     </div>
 
-    <div style="display: flex; flex-direction: row">
+    <div style="">
 
     <div th:if="${usuarios.empty}" style="text-align: center; font-weight: bold">No hay usuarios para mostrar.</div>
     <div th:if="${!usuarios.empty}" class="overflow-x-auto">
-        <div th:each="usuario : ${usuarios}" class="card" style="width: max-content; background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
+        <div th:each="usuario : ${usuarios}" class="card" style=" display: flex; flex-direction: row; background-color: #393939; color: white; padding: 1rem;  border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
 
             <div style="display: flex; flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;"><!-- Iban -->
                 <strong style="padding-right: 0.5rem;">ID cuenta</strong>

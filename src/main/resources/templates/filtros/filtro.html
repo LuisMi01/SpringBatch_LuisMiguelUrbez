@@ -20,8 +20,50 @@
       cursor: pointer;
     }
   </style>
+  <script>
+    function applyFilter(filterType) {
+      fetch('/api/filtros?filterType=' + filterType)
+              .then(response => response.json())
+              .then(users => {
+                var userList = document.querySelector('.overflow-x-auto');
+                userList.innerHTML = '';
+                users.forEach(user => {
+                  var userElement = document.createElement('div');
+                  userElement.classList.add('card');
+                  userElement.style.display = 'flex';
+                  userElement.style.flexDirection = 'row';
+                  userElement.style.backgroundColor = '#393939';
+                  userElement.style.color = 'white';
+                  userElement.style.padding = '1rem';
+                  userElement.style.border = '3px solid rgba(0,204,0,0.8)';
+                  userElement.style.borderRadius = '10px';
+                  userElement.style.margin = '0.5rem';
 
-  <script src="../../static/js/filtrosjs.js"></script>
+                  userElement.innerHTML = `
+                    <div style="display: flex; flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;">
+                        <strong style="padding-right: 0.5rem;">ID cuenta</strong>
+                        <p style="padding-right: 0.5rem;">${user.accountId}</p>
+                    </div>
+                    <div style="margin-left:0.5rem;display: flex;flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;">
+                        <strong style="padding-right: 0.5rem;">Transacción</strong>
+                        <p style="padding-right: 0.5rem;">${user.transactionType}</p>
+                    </div>
+                    <div style="margin-left:0.5rem;display: flex;flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;">
+                        <strong style="padding-right: 0.5rem;">Cantidad</strong>
+                        <p style="padding-right: 0.5rem;">${user.amount} €</p>
+                    </div>
+                    <div style="margin-left:0.5rem;display: flex; flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;">
+                        <strong style="padding-right: 0.5rem;">Fecha</strong>
+                        <p style="padding-right: 0.5rem;">${user.transactionDate}</p>
+                    </div>
+                `;
+
+                  userList.appendChild(userElement);
+                });
+              });
+    }
+  </script>
+
 </head>
 <body>
 <div layout:fragment="content">
