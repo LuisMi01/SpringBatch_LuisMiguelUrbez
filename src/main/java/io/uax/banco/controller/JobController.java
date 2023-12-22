@@ -41,11 +41,11 @@ public class JobController {
         String uploadedFileName = file.getOriginalFilename();
         try {
             // Cambia esta ruta según tus necesidades
-            Path path = Paths.get("src/main/java/io/uax/banco/config/" + uploadedFileName);
+            Path path = Paths.get("/" + uploadedFileName);
             Files.write(path, file.getBytes());
 
             JobParameters jobParameters = new JobParametersBuilder()
-                    .addString("fileName", "src/main/java/io/uax/banco/config/" + uploadedFileName)
+                    .addString("fileName", "/" + uploadedFileName)
                     .addLong("startAt", System.currentTimeMillis()).toJobParameters();
             jobLauncher.run(job, jobParameters);
         } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException |
