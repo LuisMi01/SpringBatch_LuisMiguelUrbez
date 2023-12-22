@@ -75,7 +75,7 @@ public class JobController {
             jobLauncher.run(job, jobParameters);
 
             // Delete the temporary file
-            //Files.delete(tempPath);
+            Files.delete(tempPath);
         } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException |
                  JobParametersInvalidException | IOException e) {
             e.printStackTrace();
