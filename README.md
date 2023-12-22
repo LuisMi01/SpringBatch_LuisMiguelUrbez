@@ -4,15 +4,6 @@
 https://dashboard.render.com/d/dpg-clu4ak5a73kc7399gb80-a
 
 **Pagina del deploy**
-https://deploy-spring-batch-luismiguelurbez.onrender.com
-
-**Configuracion del deploy**
-
-**central para visualizar los datos datadog**
-https://app.datadoghq.eu/help/quick_start
-
-**CSV** https://www.mockaroo.com/schemas/585388
-
 
 
 # Enunciado de la Práctica Spring Batch
