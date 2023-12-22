@@ -1,10 +1,10 @@
 function applyFilter(filterType) {
-    fetch('/filtros?filterType=' + filterType)
+    fetch('/api/filtros?filterType=' + filterType)
         .then(response => response.json())
         .then(users => {
             // Aquí debes implementar la lógica para actualizar la lista de usuarios en la página
             // con la lista filtrada de usuarios
-            var userList = document.getElementById('user-list');
+            var userList = document.querySelector('.overflow-x-auto');
             userList.innerHTML = ''; // Limpiar la lista de usuarios existente
             users.forEach(user => {
                 // Crear un nuevo elemento para cada usuario y añadirlo a la lista

@@ -31,27 +31,27 @@ public class UsuarioService {
     }
 
         public List<Usuario> findByGastoDesc() {
-            return usuarioRepository.findByOrderByGastoDesc();
+            return usuarioRepository.findByOrderByAmountDesc();
         }
 
         public List<Usuario> findByIngresoDesc() {
-            return usuarioRepository.findByOrderByIngresoDesc();
+            return usuarioRepository.findByOrderByAmountAsc();
         }
 
         public List<Usuario> findByFechaAsc() {
-            return usuarioRepository.findByOrderByFechaAsc();
+            return usuarioRepository.findByOrderByTransactionDateAsc();
         }
 
         public List<Usuario> findByFechaDesc() {
-            return usuarioRepository.findByOrderByFechaDesc();
+            return usuarioRepository.findByOrderByTransactionDateDesc();
         }
 
         public List<Usuario> findByCuentaAsc() {
-            return usuarioRepository.findByOrderByCuentaAsc();
+            return usuarioRepository.findByOrderByAccountIdAsc();
         }
 
         public List<Usuario> findByCuentaDesc() {
-            return usuarioRepository.findByOrderByCuentaDesc();
+            return usuarioRepository.findByOrderByAccountIdDesc();
         }
 
 

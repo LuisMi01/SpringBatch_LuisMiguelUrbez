@@ -8,19 +8,33 @@
       text-decoration: none;
     }
   </style>
+  <style>
+    .filtro-button {
+      color: white;
+      border: 2px solid white;
+      border-radius: 10px;
+      background-color: #1D1D1D;
+      padding: 1rem;
+      margin-right: 0.5rem;
+      width: max-content;
+      cursor: pointer;
+    }
+  </style>
+
+  <script src="../../static/js/filtrosjs.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
   <div>
     <h1 style="border-bottom: 2px solid #4c4b4b; padding: 0.5rem; ">Filtrar usuarios</h1>
 
-    <div style="margin: 1rem; display: flex; flex-direction: row; flex-wrap: wrap; overflow: auto; align-items: center">
-      <button style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; " id="filter-gasto" onclick="applyFilter('gasto')">Mayor a menor ingreso</button>
-      <button style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; " id="filter-ingreso" onclick="applyFilter('ingreso')">Mayor a menor gasto</button>
-      <button style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; " id="filter-fechaAntiguo" onclick="applyFilter('fechaAntiguo')">Fechas: más antiguo primero</button>
-      <button style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; " id="filter-fechaREciente" onclick="applyFilter('fechaReciente')">Fechas: más reciente primero</button>
-      <button style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; " id="filter-cuentaAZ" onclick="applyFilter('cuentaAZ')">A-Z Cuentas</button>
-      <button style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; " id="filter-cuentaZA" onclick="applyFilter('cuentaZA')">Z-A Cuentas</button>
+    <div style="margin: 0.5rem; display: flex; flex-direction: row; flex-wrap: wrap; overflow: auto; align-items: center">
+      <button class="filtro-button" id="filter-gasto" onclick="applyFilter('gasto')">Mayor a menor ingreso</button>
+      <button class="filtro-button" id="filter-ingreso" onclick="applyFilter('ingreso')">Mayor a menor gasto</button>
+      <button  class="filtro-button" id="filter-fechaAntiguo" onclick="applyFilter('fechaAntiguo')">Fechas: más antiguo primero</button>
+      <button class="filtro-button" id="filter-fechaREciente" onclick="applyFilter('fechaReciente')">Fechas: más reciente primero</button>
+      <button class="filtro-button" id="filter-cuentaAZ" onclick="applyFilter('cuentaAZ')">A-Z Cuentas</button>
+      <button class="filtro-button" id="filter-cuentaZA" onclick="applyFilter('cuentaZA')">Z-A Cuentas</button>
     </div>
   </div>
 
