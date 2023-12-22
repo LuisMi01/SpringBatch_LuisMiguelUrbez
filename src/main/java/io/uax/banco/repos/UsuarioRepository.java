@@ -15,4 +15,17 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByAccountId(String accountId);
 
 
-}
+        List<Usuario> findByOrderByAmountDesc(); // Mayor a menor gasto
+
+        List<Usuario> findByOrderByAmountAsc(); // Mayor a menor ingreso
+
+        List<Usuario> findByOrderByTransactionDateAsc(); // Fechas: más antiguo primero
+
+        List<Usuario> findByOrderByTransactionDateDesc(); // Fechas: más reciente primero
+
+        List<Usuario> findByOrderByAccountIdAsc(); // A-Z Cuentas
+
+        List<Usuario> findByOrderByAccountIdDesc(); // Z-A Cuentas
+    }
+
+

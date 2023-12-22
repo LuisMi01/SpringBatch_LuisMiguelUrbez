@@ -30,6 +30,31 @@ public class UsuarioService {
                 .toList();
     }
 
+        public List<Usuario> findByGastoDesc() {
+            return usuarioRepository.findByOrderByGastoDesc();
+        }
+
+        public List<Usuario> findByIngresoDesc() {
+            return usuarioRepository.findByOrderByIngresoDesc();
+        }
+
+        public List<Usuario> findByFechaAsc() {
+            return usuarioRepository.findByOrderByFechaAsc();
+        }
+
+        public List<Usuario> findByFechaDesc() {
+            return usuarioRepository.findByOrderByFechaDesc();
+        }
+
+        public List<Usuario> findByCuentaAsc() {
+            return usuarioRepository.findByOrderByCuentaAsc();
+        }
+
+        public List<Usuario> findByCuentaDesc() {
+            return usuarioRepository.findByOrderByCuentaDesc();
+        }
+
+
     public UsuarioDTO get(final Long id) {
         return usuarioRepository.findById(id)
                 .map(usuario -> mapToDTO(usuario, new UsuarioDTO()))
