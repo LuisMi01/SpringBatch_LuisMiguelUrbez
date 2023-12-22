@@ -13,9 +13,10 @@
 <div layout:fragment="content">
   <div>
     <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem; ">Filtrar usuarios</h1>
-    <div style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; ">
-      <button id="filter-gasto" onclick="applyFilter('gasto')">Filtrar por gasto</button>
-      <!-- Agrega más botones de filtro según sea necesario -->
+
+    <div style="">
+      <button style="color: white; border: 2px solid white; border-radius: 10px; background-color: #1D1D1D; padding: 1rem; margin: 0.5rem; width: max-content; " id="filter-gasto" onclick="applyFilter('gasto')">Filtrar por gasto</button>
+
     </div>
   </div>
 
@@ -23,7 +24,7 @@
 
     <div th:if="${usuarios.empty}" style="text-align: center; font-weight: bold">No hay usuarios para mostrar.</div>
     <div th:if="${!usuarios.empty}" class="overflow-x-auto">
-      <div th:each="usuario : ${usuarios}" class="card" style=" background-color: #393939; color: white; padding: 1rem; justify-content: center; align-items: center; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
+      <div th:each="usuario : ${usuarios}" class="card" style="display: flex; flex-direction: row; background-color: #393939; color: white; padding: 1rem;  border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; margin: 0.5rem ">
 
         <div style="display: flex; flex-direction:column; border-right: 2px solid #535252; margin-bottom: 0.5rem;"><!-- Iban -->
           <strong style="padding-right: 0.5rem;">ID cuenta</strong>
