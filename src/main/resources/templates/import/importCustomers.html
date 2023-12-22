@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Banco | Luis Miguel Urbez</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 style="border-bottom: 2px solid #4c4b4b; padding: 1rem;">Entrada de datos</h1>
+    <p style="padding: 1rem; text-align: center ">Tus datos se estan introduciendo en la base de datos.<br>
+        Espere ya que la entrada los datos se puede demorar hasta 1 minuto. Tambien puede ver la entrada de estos datos desde la terminal de Render Deployment o Intellij
+    </p>
+
+    <div class="card" style="background-color: #393939; color: white; padding: 1rem; margin: 0.5rem; border: 3px solid rgba(0,204,0,0.8); border-radius: 10px; ">
+        <div id="log-container"></div>
+    </div>
+
+    <script>
+        var eventSource = new EventSource("/importCustomers/sse");
+
+        eventSource.onmessage = function(event) {
+            var container = document.getElementById("log-container");
+            var paragraph = document.createElement("p");
+            paragraph.textContent = event.data;
+            container.appendChild(paragraph);
+        };
+    </script>
+</div>
+</body>
+</html>

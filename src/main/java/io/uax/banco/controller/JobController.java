@@ -40,12 +40,12 @@ public class JobController {
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         String uploadedFileName = file.getOriginalFilename();
         try {
-            // Cambia esta ruta según tus necesidades
-            Path path = Paths.get("/" + uploadedFileName);
+
+            Path path = Paths.get("src/main/resources/" + uploadedFileName);
             Files.write(path, file.getBytes());
 
             JobParameters jobParameters = new JobParametersBuilder()
-                    .addString("fileName", "/" + uploadedFileName)
+                    .addString("fileName", uploadedFileName)
                     .addLong("startAt", System.currentTimeMillis()).toJobParameters();
             jobLauncher.run(job, jobParameters);
         } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException |
