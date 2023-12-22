@@ -27,7 +27,7 @@ public class LogStreamController {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
             try {
-                Files.lines(Paths.get("myApp.log")).forEach(line -> {
+                Files.lines(Paths.get(System.getProperty("user.dir") + "/myApp.log")).forEach(line -> {
                     try {
                         emitter.send(line);
                     } catch (IOException e) {
@@ -45,7 +45,7 @@ public class LogStreamController {
     }
 
     private Iterable<String> getLogs() throws IOException {
-        Path logFile = Paths.get("myApp.log");
+        Path logFile = Paths.get(System.getProperty("user.dir") + "/myApp.log");
         return Files.readAllLines(logFile);
     }
 }
